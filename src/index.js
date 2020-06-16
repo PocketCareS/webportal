@@ -5,13 +5,23 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import SideNav from './components/sidenav';
-import Navbar from './components/navbar'
+import Navbar from './components/navbar';
+import AnalyticsPage from './components/analyticsPage';
 
 ReactDOM.render(
   <React.StrictMode>
     <div className="main-container">
       <Navbar />
-      < SideNav />
+      <div className="body-container row">
+        <div className="body-sidenav">
+          < SideNav />
+        </div>
+        <div className="body-content">
+          <AnalyticsPage />
+        </div>
+      </div>
+
+
     </div>
   </React.StrictMode>,
   document.getElementById('root')

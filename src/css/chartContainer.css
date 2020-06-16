@@ -1,0 +1,20 @@
+.chart-container {
+    max-width: 100%;
+    border: 0.5px solid rgb(199, 198, 198);
+    border-radius: 5px;
+    margin: 0px 0px 0px 40px;
+    height: 400px;
+}
+
+.chart-container-title {
+    height: 50px;
+    width: 100%;
+    border: 0.5px solid rgb(199, 198, 198);
+    border-radius: 5px 5px 0px 0px;
+    background-color: #F2F2F2;
+}
+
+.chart-container-body {
+    height: 350px;
+    width: 100%;
+}

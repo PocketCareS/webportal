@@ -1,5 +1,6 @@
 .menu-item-container {
     padding: 3px 3px 0px 3px;    /* padding: top right bottom left */
+    margin-left: 5%;
     color: white;
     font-weight: 500;
 }
