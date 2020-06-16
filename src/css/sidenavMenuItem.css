@@ -5,6 +5,12 @@
     font-weight: 500;
 }
 
+.menu-item-container-selected {
+    color: #30363E;
+    background-color: white;
+    font-weight: 500;
+}
+
 .menu-item-container:hover {
     color: #30363E;
     background-color: white;

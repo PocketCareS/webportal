@@ -14,7 +14,7 @@ class AnalyticsPage extends Component {
                         <ChartContainer title={"Close Contact Count Distribution"} graphToDisplay={"CloseContactDistribution"} />
                     </div>
                     <div className="col-6">
-                        <ChartContainer title={"Duration of Total Contact Duration across all Users"} />
+                        <ChartContainer title={"Distribution of Total Contact Duration across all Users"} />
                     </div>
                 </div>
             </React.Fragment>

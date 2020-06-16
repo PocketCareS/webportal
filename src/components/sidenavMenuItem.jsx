@@ -4,7 +4,8 @@ import '../css/sidenavMenuItem.css';
 class MenuItem extends Component {
     state = {
         icon: this.props.icon,
-        text: this.props.text
+        text: this.props.text,
+        selected: this.props.selected
     }
     render() {
         return (
@@ -14,6 +15,11 @@ class MenuItem extends Component {
             </div>
         );
     }
+
+    // TODO: Highlight Sidenav Menu Item depending on which is selected
+    // getContainerClass = () => {
+
+    // }
 }
 
 export default MenuItem;
