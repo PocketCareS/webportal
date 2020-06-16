@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+import SideNav from './components/sidenav';
+import Navbar from './components/navbar'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Navbar />
+    < SideNav />
   </React.StrictMode>,
   document.getElementById('root')
 );
