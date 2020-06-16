@@ -9,8 +9,10 @@ import Navbar from './components/navbar'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    < SideNav />
+    <div className="main-container">
+      <Navbar />
+      < SideNav />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
