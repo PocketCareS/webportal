@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import '../css/chartContainer.css';
-import CloseContactDistribution from '../charts/closeContactDistribution';
-import TotalContactDuration from '../charts/totalContactDuration';
 
 class ChartContainer extends Component {
     state = {
@@ -13,15 +11,10 @@ class ChartContainer extends Component {
             <div className="chart-container">
                 <div className="chart-container-title">{this.state.title}</div>
                 <div className="chart-container-body">
-                    {this.graphToRender()}
+                    {this.props.children}
                 </div>
             </div>
         );
-    }
-
-    graphToRender = () => {
-        if (this.state.graphToDisplay === "CloseContactDistribution") return <CloseContactDistribution />
-        else return <TotalContactDuration />
     }
 }
 
