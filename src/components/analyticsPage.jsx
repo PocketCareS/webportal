@@ -18,10 +18,9 @@ class AnalyticsPage extends Component {
         ]
     }
     render() {
-        console.log("SelectedId: " + this.props.selectedId)
         return (
             <React.Fragment>
-                <p className="pt-4 pl-4 pb-1 analytics-page-title">Analytics</p>
+                <p className="pl-4 pb-1 analytics-page-title">Analytics</p>
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
                         <div className="col-6">

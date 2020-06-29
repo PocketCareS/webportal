@@ -7,4 +7,22 @@
 
 .menu-logo-container {
     height: 200px;
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    height: 60%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.item-title {
+    color: rgb(155, 155, 155);
+    font-size: 12px;
+    margin: 10%;
 }

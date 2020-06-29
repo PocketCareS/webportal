@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import Highcharts from 'highcharts';
+import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 
 class CloseContactDistribution extends Component {
     state = {}
+
+    async componentDidMount() {
+        const response = await axios.get('https://pcpdev-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=1592236800000&endDate=1592668800000&contactType=close&graphType=wwed');
+        console.log(response);
+    }
 
     render() {
         const options = {

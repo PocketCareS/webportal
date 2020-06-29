@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import AnalyticsPage from './components/analyticsPage';
 import GeoFencing from './components/geoFencing';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import NYAnalytics from './components/nyAnalyticsPage';
 
 class App extends Component {
   state = {}
@@ -20,6 +21,7 @@ class App extends Component {
             <Switch>
               <Route path="/analytics" component={AnalyticsPage} />
               <Route path="/geoFencing" component={GeoFencing} />
+              <Route path="/nyanalytics" component={NYAnalytics} />
               <Redirect from="/" to="/analytics" />
             </Switch>
           </div>

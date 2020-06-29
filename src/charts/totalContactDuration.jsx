@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import '../css/totalContactDuration.css';
