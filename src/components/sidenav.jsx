@@ -5,19 +5,17 @@ import '../css/sidenav.css';
 class Sidenav extends Component {
     state = {
         menuItems: [
-            { id: 1, icon: 'fa fa-line-chart', text: 'Analytics', selected: true },
-            { id: 2, icon: 'fa fa-map-marker', text: 'Geo Fencing', selected: false }
+            { id: 1, icon: 'fa fa-line-chart', text: 'Analytics', link: '/analytics' },
+            { id: 2, icon: 'fa fa-map-marker', text: 'Geo Fencing', link: '/geoFencing' }
         ]
     }
-
-
 
     render() {
         return (
             <div className="sidenav-body">
                 <div className="menu-logo-container"></div>
                 <div className="menu-items-container">
-                    {this.state.menuItems.map(item => <MenuItem key={item.id} icon={item.icon} text={item.text} selected={item.selected} />)}
+                    {this.state.menuItems.map(item => <MenuItem item={item} />)}
                 </div>
             </div>
         );

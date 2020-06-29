@@ -18,6 +18,7 @@ class AnalyticsPage extends Component {
         ]
     }
     render() {
+        console.log("SelectedId: " + this.props.selectedId)
         return (
             <React.Fragment>
                 <p className="pt-4 pl-4 pb-1 analytics-page-title">Analytics</p>
