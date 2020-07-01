@@ -13,15 +13,12 @@ class CloseContactDistribution extends Component {
     }
 
     async componentDidMount() {
-        console.log(this.props.startDateEpoch);
-        console.log(this.props.endDateEpoch);
         const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];
         Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
             const currDate = new Date(key * 1);
-            console.log(currDate);
             const LESS_THAN_5 = {
                 'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
                 'y': value.totalContacts.LESS_THAN_5 !== undefined ? value.totalContacts.LESS_THAN_5 : 0
@@ -43,8 +40,6 @@ class CloseContactDistribution extends Component {
         data.GREATER_THAN_5_LESS_THAN_10 = greater_than_5_less_than_10;
         data.GREATER_THAN_10 = greater_than_10;
         this.setState({ data });
-
-        console.log(this.state.data)
     }
 
     render() {
@@ -64,8 +59,9 @@ class CloseContactDistribution extends Component {
             },
             yAxis: {
                 min: 0,
+                offset: -10,
                 title: {
-                    text: 'User Count'
+                    text: 'User Count',
                 },
                 stackLabels: {
                     enabled: true,
@@ -76,14 +72,15 @@ class CloseContactDistribution extends Component {
                             Highcharts.defaultOptions.title.style.color
                         ) || 'gray'
                     }
-                }
+                },
+                endOnTick: false
             },
             legend: {
                 align: 'right',
                 x: -30,
                 verticalAlign: 'top',
                 y: 25,
-                floating: true,
+                floating: false,
                 backgroundColor:
                     Highcharts.defaultOptions.legend.backgroundColor || 'white',
                 borderColor: '#CCC',
@@ -107,7 +104,6 @@ class CloseContactDistribution extends Component {
                         enabled: true,
                         color: "#000000",
                         formatter: function () {
-                            console.log(this);
                             var val = this.y;
                             if (val < 1) {
                                 return '';

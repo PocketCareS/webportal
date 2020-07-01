@@ -5,8 +5,51 @@ import HighchartsReact from 'highcharts-react-official';
 import '../css/totalContactDuration.css';
 
 class TotalContactDuration extends Component {
-    state = {}
+    state = {
+        data: {
+            LESS_THAN_5: [],
+            GREATER_THAN_5_LESS_THAN_10: [],
+            GREATER_THAN_10: []
+        }
+    }
+
+    async componentDidMount() {
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
+        let less_than_5 = [];
+        let greater_than_5_less_than_10 = [];
+        let greater_than_10 = [];
+        Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
+            const currDate = new Date(key * 1);
+            console.log(currDate);
+            const LESS_THAN_5 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContactsDuration.LESS_THAN_5 !== undefined ? value.totalContactsDuration.LESS_THAN_5 : 0
+            }
+            const GREATER_THAN_5_LESS_THAN_10 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContactsDuration.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.totalContactsDuration.GREATER_THAN_5_LESS_THAN_10 : 0
+            }
+            const GREATER_THAN_10 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContactsDuration.GREATER_THAN_10 !== undefined ? value.totalContactsDuration.GREATER_THAN_10 : 0
+            }
+            less_than_5.push(LESS_THAN_5);
+            greater_than_5_less_than_10.push(GREATER_THAN_5_LESS_THAN_10);
+            greater_than_10.push(GREATER_THAN_10)
+        })
+        let data = { ...this.state.data }
+        data.LESS_THAN_5 = less_than_5;
+        data.GREATER_THAN_5_LESS_THAN_10 = greater_than_5_less_than_10;
+        data.GREATER_THAN_10 = greater_than_10;
+        this.setState({ data });
+
+        console.log(this.state.data)
+    }
+
     render() {
+        const less_than_5 = this.state.data.LESS_THAN_5;
+        const greater_than_5_less_than_10 = this.state.data.GREATER_THAN_5_LESS_THAN_10;
+        const greater_than_10 = this.state.data.GREATER_THAN_10;
         const options = {
             chart: {
                 type: 'column'
@@ -15,28 +58,16 @@ class TotalContactDuration extends Component {
                 text: null
             },
             xAxis: {
-                categories: [
-                    'May 1',
-                    'May 2',
-                    'May 3',
-                    'May 4',
-                    'May 5',
-                    'May 6',
-                    'May 7',
-                    'May 8',
-                    'May 9',
-                    'May 10',
-                    'May 11',
-                    'May 12',
-                ],
+                type: 'datetime',
                 crosshair: true
             },
             yAxis: {
                 min: 0,
-                max: 200,
+                offset: -10,
                 title: {
                     text: 'User Count'
-                }
+                },
+                endOnTick: true
             },
             plotOptions: {
                 column: {
@@ -49,7 +80,7 @@ class TotalContactDuration extends Component {
                 x: -30,
                 verticalAlign: 'top',
                 y: 25,
-                floating: true,
+                floating: false,
                 backgroundColor:
                     Highcharts.defaultOptions.legend.backgroundColor || 'white',
                 borderColor: '#CCC',
@@ -65,20 +96,16 @@ class TotalContactDuration extends Component {
                 useHTML: true
             },
             series: [{
-                name: '0-5 mins',
-                data: [20, 50, 30, 40, 10, 20, 40, 30, 40, 10, 20, 40]
+                name: 'Less than 5 mins',
+                data: less_than_5
 
             }, {
-                name: '5-10 mins',
-                data: [45, 28, 60, 50, 40, 80, 50, 105, 60, 110, 90, 70]
+                name: 'Greater than 5 mins, Less than 10 mins',
+                data: greater_than_5_less_than_10
 
             }, {
-                name: '10-15 mins',
-                data: [80, 40, 60, 110, 80, 70, 100, 60, 50, 40, 80, 50]
-
-            }, {
-                name: '> 15 mins',
-                data: [85, 105, 105, 60, 110, 90, 70, 60, 110, 80, 70, 100]
+                name: 'Greater than 10 mins',
+                data: greater_than_10
 
             }]
         }
