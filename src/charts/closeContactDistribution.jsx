@@ -4,14 +4,51 @@ import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 
 class CloseContactDistribution extends Component {
-    state = {}
+    state = {
+        data: {
+            LESS_THAN_5: [],
+            GREATER_THAN_5_LESS_THAN_10: [],
+            GREATER_THAN_10: []
+        }
+    }
 
     async componentDidMount() {
         const response = await axios.get('https://pcpdev-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=1592236800000&endDate=1592668800000&contactType=close&graphType=wwed');
-        console.log(response);
+        let less_than_5 = [];
+        let greater_than_5_less_than_10 = [];
+        let greater_than_10 = [];
+        Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
+            const currDate = new Date(key * 1);
+            console.log(currDate);
+            const LESS_THAN_5 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContacts.LESS_THAN_5 !== undefined ? value.totalContacts.LESS_THAN_5 : 0
+            }
+            const GREATER_THAN_5_LESS_THAN_10 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContacts.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.totalContacts.GREATER_THAN_5_LESS_THAN_10 : 0
+            }
+            const GREATER_THAN_10 = {
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
+                'y': value.totalContacts.GREATER_THAN_10 !== undefined ? value.totalContacts.GREATER_THAN_10 : 0
+            }
+            less_than_5.push(LESS_THAN_5);
+            greater_than_5_less_than_10.push(GREATER_THAN_5_LESS_THAN_10);
+            greater_than_10.push(GREATER_THAN_10)
+        })
+        let data = { ...this.state.data }
+        data.LESS_THAN_5 = less_than_5;
+        data.GREATER_THAN_5_LESS_THAN_10 = greater_than_5_less_than_10;
+        data.GREATER_THAN_10 = greater_than_10;
+        this.setState({ data });
+
+        console.log(this.state.data)
     }
 
     render() {
+        const less_than_5 = this.state.data.LESS_THAN_5;
+        const greater_than_5_less_than_10 = this.state.data.GREATER_THAN_5_LESS_THAN_10;
+        const greater_than_10 = this.state.data.GREATER_THAN_10;
         const options = {
             chart: {
                 type: 'column'
@@ -20,7 +57,8 @@ class CloseContactDistribution extends Component {
                 text: null
             },
             xAxis: {
-                categories: ['May 1', 'May 2', 'May 3', 'May 4', 'May 5', 'May 6', 'May 7', 'May 8', 'May 9', 'May 10', 'May 11', 'May 12', 'May 13', 'May 14']
+                type: 'datetime',
+                allowDecimals: false,
             },
             yAxis: {
                 min: 0,
@@ -51,11 +89,19 @@ class CloseContactDistribution extends Component {
                 shadow: false
             },
             tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        ' <b>Date:</b> ' + Highcharts.dateFormat('%e %b, %Y',
+                            new Date(this.x))
+                        + ' <br/> <b>User Count:</b> ' + this.y;
+                },
                 headerFormat: '<b>{point.x}</b><br/>',
                 pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
             },
             plotOptions: {
                 column: {
+                    // pointStart: Date.UTC(startDateEpoch.getFullYear(), startDateEpoch.getMonth(), startDateEpoch.getDate()),
+                    // pointInterval: 24 * 3600 * 1000,
                     stacking: 'normal',
                     dataLabels: {
                         enabled: true,
@@ -72,14 +118,15 @@ class CloseContactDistribution extends Component {
                 '#DC133D'
             ],
             series: [{
-                name: '0-1',
-                data: [5, 3, 4, 7, 2, 3, 8, 5, 3, 4, 7, 2, 3, 8]
+                name: 'Less than 5',
+                data: less_than_5
+            },
+            {
+                name: 'Greater than 5, Less than 10',
+                data: greater_than_5_less_than_10
             }, {
-                name: '1-5',
-                data: [2, 2, 3, 2, 2, 5, 6, 5, 3, 4, 7, 2, 3, 8]
-            }, {
-                name: '5-10',
-                data: [3, 4, 4, 2, 5, 4, 2, 5, 3, 4, 7, 2, 3, 8]
+                name: 'Greater than 10',
+                data: greater_than_10
             }]
         }
         return (

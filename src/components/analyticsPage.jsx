@@ -5,17 +5,27 @@ import CloseContactDistribution from '../charts/closeContactDistribution';
 import TotalContactDuration from '../charts/totalContactDuration';
 
 class AnalyticsPage extends Component {
-    state = {
-        graphs: [
-            {
-                title: "Close Contact Count Distribution",
-                graphClass: <CloseContactDistribution />
-            },
-            {
-                title: "Distribution of Total Contact Duration across all Users",
-                graphClass: <TotalContactDuration />
-            },
-        ]
+    state = {}
+
+    constructor(props) {
+        super(props);
+        let targetDate = new Date()
+        targetDate.setDate(targetDate.getDate() - 7);
+        this.state = {
+            graphs: [
+                {
+                    title: "Close Contact Count Distribution",
+                    startDateEpoch: new Date(1592236800000),
+                    graphClass: "CloseContactDistribution",
+                },
+                {
+                    title: "Distribution of Total Contact Duration across all Users",
+                    startDateEpoch: new Date(1592236800000),
+                    graphClass: "TotalContactDuration"
+                },
+            ]
+        }
+
     }
     render() {
         return (
@@ -24,8 +34,8 @@ class AnalyticsPage extends Component {
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
                         <div className="col-6">
-                            <ChartContainer title={graph.title}>
-                                {graph.graphClass}
+                            <ChartContainer title={graph.title} startDateEpoch={graph.startDateEpoch}>
+                                {this.graphToRender(graph)}
                             </ChartContainer>
                         </div>
                     ))}
@@ -33,6 +43,11 @@ class AnalyticsPage extends Component {
             </React.Fragment>
 
         );
+    }
+
+    graphToRender = (graph) => {
+        if (graph.graphClass === "CloseContactDistribution") return <CloseContactDistribution startDateEpoch={graph.startDateEpoch} />
+        else if (graph.graphClass === "TotalContactDuration") return <TotalContactDuration startDateEpoch={graph.startDateEpoch} />
     }
 }
 
