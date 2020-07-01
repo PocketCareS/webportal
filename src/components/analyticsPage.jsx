@@ -9,18 +9,22 @@ class AnalyticsPage extends Component {
 
     constructor(props) {
         super(props);
-        let targetDate = new Date()
-        targetDate.setDate(targetDate.getDate() - 7);
+        const currentDate = new Date()
+        let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
+        const targetEndDateTime = targetStartDateTime.getTime();
+        targetStartDateTime.setDate(targetStartDateTime.getDate() - 7);
         this.state = {
             graphs: [
                 {
                     title: "Close Contact Count Distribution",
-                    startDateEpoch: new Date(1592236800000),
+                    startDateEpoch: targetStartDateTime.valueOf(),
+                    endDateEpoch: targetEndDateTime,
                     graphClass: "CloseContactDistribution",
                 },
                 {
                     title: "Distribution of Total Contact Duration across all Users",
-                    startDateEpoch: new Date(1592236800000),
+                    startDateEpoch: targetStartDateTime.valueOf(),
+                    endDateEpoch: targetEndDateTime,
                     graphClass: "TotalContactDuration"
                 },
             ]
@@ -46,8 +50,8 @@ class AnalyticsPage extends Component {
     }
 
     graphToRender = (graph) => {
-        if (graph.graphClass === "CloseContactDistribution") return <CloseContactDistribution startDateEpoch={graph.startDateEpoch} />
-        else if (graph.graphClass === "TotalContactDuration") return <TotalContactDuration startDateEpoch={graph.startDateEpoch} />
+        if (graph.graphClass === "CloseContactDistribution") return <CloseContactDistribution startDateEpoch={graph.startDateEpoch} endDateEpoch={graph.endDateEpoch} />
+        else if (graph.graphClass === "TotalContactDuration") return <TotalContactDuration startDateEpoch={graph.startDateEpoch} endDateEpoch={graph.endDateEpoch} />
     }
 }
 

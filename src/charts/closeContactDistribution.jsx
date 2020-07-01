@@ -13,7 +13,9 @@ class CloseContactDistribution extends Component {
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpdev-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=1592236800000&endDate=1592668800000&contactType=close&graphType=wwed');
+        console.log(this.props.startDateEpoch);
+        console.log(this.props.endDateEpoch)
+        const response = await axios.get('https://pcpdev-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];
