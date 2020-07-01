@@ -34,7 +34,7 @@ class AnalyticsPage extends Component {
     render() {
         return (
             <React.Fragment>
-                <p className="pl-4 pb-1 analytics-page-title">Analytics</p>
+                <p className="analytics-page-title">Analytics</p>
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
                         <div className="col-6">

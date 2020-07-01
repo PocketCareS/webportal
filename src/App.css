@@ -40,3 +40,8 @@
 .body-container {
   margin-top: 50px;
 }
+
+.body-content {
+  margin-top: -20px;
+  width: 97%;
+}
