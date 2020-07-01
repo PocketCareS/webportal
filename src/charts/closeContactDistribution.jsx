@@ -65,7 +65,7 @@ class CloseContactDistribution extends Component {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Person Count'
+                    text: 'User Count'
                 },
                 stackLabels: {
                     enabled: true,
@@ -102,12 +102,18 @@ class CloseContactDistribution extends Component {
             },
             plotOptions: {
                 column: {
-                    // pointStart: Date.UTC(startDateEpoch.getFullYear(), startDateEpoch.getMonth(), startDateEpoch.getDate()),
-                    // pointInterval: 24 * 3600 * 1000,
                     stacking: 'normal',
                     dataLabels: {
                         enabled: true,
                         color: "#000000",
+                        formatter: function () {
+                            console.log(this);
+                            var val = this.y;
+                            if (val < 1) {
+                                return '';
+                            }
+                            return val;
+                        },
                         style: {
                             textOutline: false
                         }
