@@ -12,7 +12,8 @@ class AnalyticsPage extends Component {
         const currentDate = new Date()
         let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
         const targetEndDateTime = targetStartDateTime.getTime();
-        targetStartDateTime.setDate(targetStartDateTime.getDate() - 7);
+        targetStartDateTime.setDate(targetStartDateTime.getDate() - 15);
+        console.log(targetStartDateTime);
         this.state = {
             graphs: [
                 {
@@ -38,7 +39,7 @@ class AnalyticsPage extends Component {
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
                         <div className="col-6">
-                            <ChartContainer title={graph.title} startDateEpoch={graph.startDateEpoch}>
+                            <ChartContainer title={graph.title}>
                                 {this.graphToRender(graph)}
                             </ChartContainer>
                         </div>

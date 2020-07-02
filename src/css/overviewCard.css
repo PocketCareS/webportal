@@ -1,0 +1,25 @@
+.card {
+    width: 100%;
+}
+
+.card-header {
+    font-weight: 500;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.card-text {
+    font-weight: 500;
+}
+
+.data-value {
+    font-weight: 200;
+    align-self: center;
+    float: right;
+}
+
+.date-value {
+    float: right;
+}
