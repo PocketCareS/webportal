@@ -13,6 +13,7 @@ class CloseContactDistribution extends Component {
     }
 
     async componentDidMount() {
+        console.log('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed')
         const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
@@ -40,6 +41,7 @@ class CloseContactDistribution extends Component {
         data.GREATER_THAN_5_LESS_THAN_10 = greater_than_5_less_than_10;
         data.GREATER_THAN_10 = greater_than_10;
         this.setState({ data });
+        console.log(this.state.data)
     }
 
     render() {
@@ -87,19 +89,29 @@ class CloseContactDistribution extends Component {
                 borderWidth: 1,
                 shadow: false
             },
+            // tooltip: {
+            //     formatter: function () {
+            //         return '<b>' + this.series.name + '</b><br/>' +
+            //             ' <b>Date:</b> ' + Highcharts.dateFormat('%e %b, %Y',
+            //                 new Date(this.x))
+            //             + ' <br/> <b>User Count:</b> ' + this.y;
+            //     },
+            //     headerFormat: '<b>{point.x}</b><br/>',
+            //     pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+            //     crosshairs: true
+            // },
             tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        ' <b>Date:</b> ' + Highcharts.dateFormat('%e %b, %Y',
-                            new Date(this.x))
-                        + ' <br/> <b>User Count:</b> ' + this.y;
-                },
-                headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0"><b>{series.name}: </b></td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
             },
             plotOptions: {
                 column: {
                     stacking: 'normal',
+                    minPointLength: 0,
                     dataLabels: {
                         enabled: true,
                         color: "#000000",

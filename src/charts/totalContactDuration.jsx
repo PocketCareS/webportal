@@ -42,8 +42,6 @@ class TotalContactDuration extends Component {
         data.GREATER_THAN_5_LESS_THAN_10 = greater_than_5_less_than_10;
         data.GREATER_THAN_10 = greater_than_10;
         this.setState({ data });
-
-        console.log(this.state.data)
     }
 
     render() {
