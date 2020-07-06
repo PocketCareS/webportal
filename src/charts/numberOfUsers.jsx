@@ -4,9 +4,8 @@ import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 
-class HealthStatusTrend extends Component {
-    state = {
-    }
+class NumberOfUsers extends Component {
+    state = {}
 
     constructor(props) {
         super(props);
@@ -18,47 +17,30 @@ class HealthStatusTrend extends Component {
             startDateEpoch: targetStartDateTime.valueOf(),
             endDateEpoch: targetEndDateTime,
             data: {
-                total: [],
-                healthy: [],
-                unhealthy: []
+                count: [],
             }
         }
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/health?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch);
-        let total = [];
-        let healthy = [];
-        let unhealthy = [];
-        Object.entries(response.data.dateWiseHealthAnalytics).map(([key, value]) => {
+        console.log('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users')
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users');
+        let count = [];
+        Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
             const currDate = new Date(key * 1);
-            const totalUsers = {
+            const userCount = {
                 'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.filled
+                'y': value.dailyNumberOfUsers
             }
-            const healthyUsers = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.healthy
-            }
-            const unhealthyUsers = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.notHealthy
-            }
-            total.push(totalUsers);
-            healthy.push(healthyUsers);
-            unhealthy.push(unhealthyUsers)
+            count.push(userCount);
         })
         let data = { ...this.state.data }
-        data.total = total;
-        data.healthy = healthy;
-        data.unhealthy = unhealthy;
+        data.count = count;
         this.setState({ data });
     }
 
     render() {
-        const total = this.state.data.total;
-        const healthy = this.state.data.healthy;
-        const unhealthy = this.state.data.unhealthy;
+        const count = this.state.data.count;
         const options = {
             chart: {
                 type: 'line'
@@ -79,16 +61,7 @@ class HealthStatusTrend extends Component {
                 allowDecimals: false,
             },
             legend: {
-                align: 'right',
-                x: -30,
-                verticalAlign: 'top',
-                y: 25,
-                floating: false,
-                backgroundColor:
-                    Highcharts.defaultOptions.legend.backgroundColor || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
+                enabled: false
             },
 
             plotOptions: {
@@ -103,19 +76,11 @@ class HealthStatusTrend extends Component {
                     }
                 }
             },
-            colors: [
-                '#32CD32',
-                '#DC143C',
-            ],
 
             series: [
                 {
-                    name: 'Healthy',
-                    data: healthy
-                },
-                {
-                    name: 'Unhealthy',
-                    data: unhealthy
+                    name: 'Count',
+                    data: count
                 }
             ],
 
@@ -133,4 +98,4 @@ class HealthStatusTrend extends Component {
     }
 }
 
-export default HealthStatusTrend;
+export default NumberOfUsers;

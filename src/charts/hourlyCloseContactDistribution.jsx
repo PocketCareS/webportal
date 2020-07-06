@@ -3,33 +3,46 @@ import Highcharts from 'highcharts';
 import axios from 'axios';
 import HighchartsReact from 'highcharts-react-official';
 
-class CloseContactDistribution extends Component {
-    state = {
-        data: {
-            LESS_THAN_5: [],
-            GREATER_THAN_5_LESS_THAN_10: [],
-            GREATER_THAN_10: []
+class HourlyCloseContactDistribution extends Component {
+    state = {}
+
+    constructor(props) {
+        super(props);
+        const currentDate = new Date()
+        let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
+        const targetEndDateTime = targetStartDateTime.getTime();
+        this.state = {
+            startDateEpoch: targetStartDateTime.valueOf(),
+            endDateEpoch: targetEndDateTime,
+            data: {
+                LESS_THAN_5: [],
+                GREATER_THAN_5_LESS_THAN_10: [],
+                GREATER_THAN_10: []
+            }
         }
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
+        console.log('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=wwed')
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];
-        Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
+        Object.entries(response.data.aggregatedResponse[this.state.startDateEpoch].aggregatedContactCountHourlyData).map(([key, value]) => {
             const currDate = new Date(key * 1);
+            console.log(currDate)
+            console.log(Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()))
             const LESS_THAN_5 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContacts.LESS_THAN_5 !== undefined ? value.totalContacts.LESS_THAN_5 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactNumber.LESS_THAN_5 !== undefined ? value.hourlyContactNumber.LESS_THAN_5 : 0
             }
             const GREATER_THAN_5_LESS_THAN_10 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContacts.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.totalContacts.GREATER_THAN_5_LESS_THAN_10 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactNumber.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.hourlyContactNumber.GREATER_THAN_5_LESS_THAN_10 : 0
             }
             const GREATER_THAN_10 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContacts.GREATER_THAN_10 !== undefined ? value.totalContacts.GREATER_THAN_10 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactNumber.GREATER_THAN_10 !== undefined ? value.hourlyContactNumber.GREATER_THAN_10 : 0
             }
             less_than_5.push(LESS_THAN_5);
             greater_than_5_less_than_10.push(GREATER_THAN_5_LESS_THAN_10);
@@ -149,4 +162,4 @@ class CloseContactDistribution extends Component {
     }
 }
 
-export default CloseContactDistribution;
+export default HourlyCloseContactDistribution;

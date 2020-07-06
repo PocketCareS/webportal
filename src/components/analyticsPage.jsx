@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import '../css/analyticsPage.css';
 import ChartContainer from './chartContainer';
 import CloseContactDistribution from '../charts/closeContactDistribution';
+import HourlyCloseContactDistribution from '../charts/hourlyCloseContactDistribution';
 import TotalContactDuration from '../charts/totalContactDuration';
+import HourlyTotalContactDuration from '../charts/hourlyTotalContactDuration';
+import NumberOfUsers from '../charts/numberOfUsers';
 import OverviewCard from './overviewCard';
 import axios from 'axios';
 import moment from 'moment';
@@ -14,7 +17,7 @@ class AnalyticsPage extends Component {
     constructor(props) {
         super(props);
         const currentDate = new Date()
-        let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 1, 12, 0, 0);
+        let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
         const targetEndDateTime = targetStartDateTime.getTime();
         targetStartDateTime.setDate(targetStartDateTime.getDate() - 15);
         this.state = {
@@ -25,6 +28,16 @@ class AnalyticsPage extends Component {
                 date: "",
                 data: []
             },
+            hourlyGraphs: [
+                {
+                    title: "Number of Close Encounters Today (Hourly)",
+                    graphClass: "HourlyCloseContactDistribution",
+                },
+                {
+                    title: "Total Duration of Close Encounters Today (Hourly)",
+                    graphClass: "HourlyTotalContactDuration",
+                }
+            ],
             graphs: [
                 {
                     title: "Number of Close Encounters (Daily)",
@@ -34,6 +47,10 @@ class AnalyticsPage extends Component {
                     title: "Total Duration of Close Encounters (Daily)",
                     graphClass: "TotalContactDuration"
                 },
+                {
+                    title: "Number of Users on campus (Daily)",
+                    graphClass: "NumberOfUsers"
+                },
             ]
         }
 
@@ -42,7 +59,6 @@ class AnalyticsPage extends Component {
     async componentDidMount() {
         const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/health?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch);
         const latestData = response.data.dateWiseHealthAnalytics[this.state.endDateEpoch]
-        console.log(moment(new Date(this.state.endDateEpoch)).format('D MMMM YYYY'))
         const totalUsers = {
             title: "Total Users",
             value: latestData.totalUsers
@@ -83,7 +99,17 @@ class AnalyticsPage extends Component {
                         </ChartContainer>
                     </div>
                 </div>
-                <p className="title">Analytics</p>
+                <p className="title">Hourly Analytics</p>
+                <div className="analytics-page-container row">
+                    {this.state.hourlyGraphs.map(graph => (
+                        <div className="col-6">
+                            <ChartContainer title={graph.title}>
+                                {this.graphToRender(graph)}
+                            </ChartContainer>
+                        </div>
+                    ))}
+                </div>
+                <p className="title">Daily Analytics</p>
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
                         <div className="col-6">
@@ -101,6 +127,9 @@ class AnalyticsPage extends Component {
     graphToRender = (graph) => {
         if (graph.graphClass === "CloseContactDistribution") return <CloseContactDistribution startDateEpoch={this.state.startDateEpoch} endDateEpoch={this.state.endDateEpoch} />
         else if (graph.graphClass === "TotalContactDuration") return <TotalContactDuration startDateEpoch={this.state.startDateEpoch} endDateEpoch={this.state.endDateEpoch} />
+        else if (graph.graphClass === "HourlyCloseContactDistribution") return <HourlyCloseContactDistribution startDateEpoch={this.state.startDateEpoch} endDateEpoch={this.state.endDateEpoch} />
+        else if (graph.graphClass === "HourlyTotalContactDuration") return <HourlyTotalContactDuration startDateEpoch={this.state.startDateEpoch} endDateEpoch={this.state.endDateEpoch} />
+        else if (graph.graphClass === "NumberOfUsers") return <NumberOfUsers startDateEpoch={this.state.startDateEpoch} endDateEpoch={this.state.endDateEpoch} />
     }
 }
 

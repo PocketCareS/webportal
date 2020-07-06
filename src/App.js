@@ -20,7 +20,7 @@ class App extends Component {
           <div className="body-content">
             <Switch>
               <Route path="/analytics" component={AnalyticsPage} />
-              <Route path="/geoFencing" component={GeoFencing} />
+              {/* <Route path="/geoFencing" component={GeoFencing} /> */}
               <Route path="/nyanalytics" component={NYAnalytics} />
               <Redirect from="/" to="/analytics" />
             </Switch>

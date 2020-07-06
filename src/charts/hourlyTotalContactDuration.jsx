@@ -4,33 +4,43 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import '../css/totalContactDuration.css';
 
-class TotalContactDuration extends Component {
-    state = {
-        data: {
-            LESS_THAN_5: [],
-            GREATER_THAN_5_LESS_THAN_10: [],
-            GREATER_THAN_10: []
+class HourlyTotalContactDuration extends Component {
+    state = {}
+
+    constructor(props) {
+        super(props);
+        const currentDate = new Date()
+        let targetStartDateTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
+        const targetEndDateTime = targetStartDateTime.getTime();
+        this.state = {
+            startDateEpoch: targetStartDateTime.valueOf(),
+            endDateEpoch: targetEndDateTime,
+            data: {
+                LESS_THAN_5: [],
+                GREATER_THAN_5_LESS_THAN_10: [],
+                GREATER_THAN_10: []
+            }
         }
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];
-        Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
+        Object.entries(response.data.aggregatedResponse[this.state.startDateEpoch].aggregatedContactCountHourlyData).map(([key, value]) => {
             const currDate = new Date(key * 1);
             const LESS_THAN_5 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContactsDuration.LESS_THAN_5 !== undefined ? value.totalContactsDuration.LESS_THAN_5 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactDuration.LESS_THAN_5 !== undefined ? value.hourlyContactDuration.LESS_THAN_5 : 0
             }
             const GREATER_THAN_5_LESS_THAN_10 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContactsDuration.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.totalContactsDuration.GREATER_THAN_5_LESS_THAN_10 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactDuration.GREATER_THAN_5_LESS_THAN_10 !== undefined ? value.hourlyContactDuration.GREATER_THAN_5_LESS_THAN_10 : 0
             }
             const GREATER_THAN_10 = {
-                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()),
-                'y': value.totalContactsDuration.GREATER_THAN_10 !== undefined ? value.totalContactsDuration.GREATER_THAN_10 : 0
+                'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
+                'y': value.hourlyContactDuration.GREATER_THAN_10 !== undefined ? value.hourlyContactDuration.GREATER_THAN_10 : 0
             }
             less_than_5.push(LESS_THAN_5);
             greater_than_5_less_than_10.push(GREATER_THAN_5_LESS_THAN_10);
@@ -64,12 +74,26 @@ class TotalContactDuration extends Component {
                 title: {
                     text: 'User Count'
                 },
-                endOnTick: true
+                endOnTick: false
             },
             plotOptions: {
                 column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
+                    stacking: 'normal',
+                    minPointLength: 0,
+                    dataLabels: {
+                        enabled: true,
+                        color: "#000000",
+                        formatter: function () {
+                            var val = this.y;
+                            if (val < 1) {
+                                return '';
+                            }
+                            return val;
+                        },
+                        style: {
+                            textOutline: false
+                        }
+                    }
                 }
             },
             legend: {
@@ -112,4 +136,4 @@ class TotalContactDuration extends Component {
     }
 }
 
-export default TotalContactDuration;
+export default HourlyTotalContactDuration;
