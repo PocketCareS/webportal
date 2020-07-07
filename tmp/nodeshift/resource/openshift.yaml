@@ -17,7 +17,7 @@ items:
         app.openshift.io/runtime: nodejs
       annotations:
         nodeshift/git-branch: master
-        nodeshift/git-commit: e60227b326caaf4f894294307fb958d48c153dbe
+        nodeshift/git-commit: b4a31ae304e4cf0b87f1ab28e8f8f5cbc325c0a7
     spec:
       replicas: 1
       revisionHistoryLimit: 2
@@ -45,7 +45,7 @@ items:
             app: pocketcare-webportal
           annotations:
             nodeshift/git-branch: master
-            nodeshift/git-commit: e60227b326caaf4f894294307fb958d48c153dbe
+            nodeshift/git-commit: b4a31ae304e4cf0b87f1ab28e8f8f5cbc325c0a7
         spec:
           containers:
             - image: pocketcare-webportal
@@ -82,7 +82,7 @@ items:
         app.openshift.io/runtime: nodejs
       annotations:
         nodeshift/git-branch: master
-        nodeshift/git-commit: e60227b326caaf4f894294307fb958d48c153dbe
+        nodeshift/git-commit: b4a31ae304e4cf0b87f1ab28e8f8f5cbc325c0a7
   - apiVersion: route.openshift.io/v1
     kind: Route
     spec:
