@@ -23,15 +23,12 @@ class HourlyCloseContactDistribution extends Component {
     }
 
     async componentDidMount() {
-        console.log('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=wwed')
         const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];
         Object.entries(response.data.aggregatedResponse[this.state.startDateEpoch].aggregatedContactCountHourlyData).map(([key, value]) => {
             const currDate = new Date(key * 1);
-            console.log(currDate)
-            console.log(Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()))
             const LESS_THAN_5 = {
                 'x': Date.UTC(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours()),
                 'y': value.hourlyContactNumber.LESS_THAN_5 !== undefined ? value.hourlyContactNumber.LESS_THAN_5 : 0

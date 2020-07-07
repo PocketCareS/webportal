@@ -44,10 +44,10 @@ class NYAnalytics extends Component {
             <React.Fragment>
                 <p className="ny-analytics-page-title">New York State - Analytics</p>
                 <div className="ny-analytics-page-container row">
-                    <div className="col-3">
+                    <div className="col-xl-3">
                         <OverviewCard cardData={this.state.cardData} />
                     </div>
-                    <div className="col-9">
+                    <div className="col-xl-9">
                         <ChartContainer title={"Daily Trend"}>
                             <NYDailyCases />
                         </ChartContainer>

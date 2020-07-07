@@ -1,3 +1,11 @@
 .navbar-title {
     font-weight: 600;
 }
+
+.isHidden {
+    display: none;
+}
+
+.isVisible {
+    visibility: visible;
+}

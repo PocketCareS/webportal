@@ -90,10 +90,10 @@ class AnalyticsPage extends Component {
             <React.Fragment>
                 <p className="title">Health Status</p>
                 <div className="analytics-page-container row">
-                    <div className="col-3">
+                    <div className="col-xl-3">
                         <OverviewCard cardData={this.state.healthCardData} />
                     </div>
-                    <div className="col-9">
+                    <div className="col-xl-9">
                         <ChartContainer title={"Health Status - Trend"}>
                             <HealthStatusTrend />
                         </ChartContainer>
@@ -102,7 +102,7 @@ class AnalyticsPage extends Component {
                 <p className="title">Hourly Analytics</p>
                 <div className="analytics-page-container row">
                     {this.state.hourlyGraphs.map(graph => (
-                        <div className="col-6">
+                        <div className="col-xl-6">
                             <ChartContainer title={graph.title}>
                                 {this.graphToRender(graph)}
                             </ChartContainer>
@@ -112,7 +112,7 @@ class AnalyticsPage extends Component {
                 <p className="title">Daily Analytics</p>
                 <div className="analytics-page-container row">
                     {this.state.graphs.map(graph => (
-                        <div className="col-6">
+                        <div className="col-xl-6">
                             <ChartContainer title={graph.title}>
                                 {this.graphToRender(graph)}
                             </ChartContainer>

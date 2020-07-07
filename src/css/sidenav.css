@@ -3,6 +3,7 @@
     width: 220px;
     position: fixed;
     background-color: #30363E;
+    z-index: 1;
 }
 
 .menu-logo-container {
@@ -25,4 +26,8 @@
     color: rgb(155, 155, 155);
     font-size: 12px;
     margin: 10%;
+}
+
+.sidenav-hidden {
+    left: -220px;
 }

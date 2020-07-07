@@ -22,7 +22,7 @@ class Sidenav extends Component {
 
     render() {
         return (
-            <div className="sidenav-body">
+            <div className={"sidenav-body " + (this.props.isSideNavVisible ? "" : "sidenav-hidden")}>
                 <div className="menu-logo-container">
                     <img className="logo" src={require('../images/logo.png')} alt="" loading="lazy" />
                 </div>
