@@ -6,7 +6,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import _ from 'lodash';
 
+function component() {
+  const element = document.createElement('div');
+  // Lodash, now imported by this script
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  return element;
+}
+
+document.body.appendChild(component());
 const routing = (
   <BrowserRouter>
     <App />
