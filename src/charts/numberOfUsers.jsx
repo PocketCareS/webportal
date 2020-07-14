@@ -23,8 +23,8 @@ class NumberOfUsers extends Component {
     }
 
     async componentDidMount() {
-        console.log('https://pcpprd-app.acsu.buffalo.edu/pocketCare-0.0.1-SNAPSHOT/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users')
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/pocketCare-0.0.1-SNAPSHOT/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users');
+        console.log('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users')
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch + '&contactType=close&graphType=number%20of%20users');
         let count = [];
         Object.entries(response.data.aggregatedResponse).map(([key, value]) => {
             const currDate = new Date(key * 1);

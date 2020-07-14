@@ -14,7 +14,7 @@ class TotalContactDuration extends Component {
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/pocketCare-0.0.1-SNAPSHOT/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/contactDataAll?startDate=' + this.props.startDateEpoch + '&endDate=' + this.props.endDateEpoch + '&contactType=close&graphType=wwed');
         let less_than_5 = [];
         let greater_than_5_less_than_10 = [];
         let greater_than_10 = [];

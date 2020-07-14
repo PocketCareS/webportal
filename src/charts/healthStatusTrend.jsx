@@ -26,7 +26,7 @@ class HealthStatusTrend extends Component {
     }
 
     async componentDidMount() {
-        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/pocketCare-0.0.1-SNAPSHOT/analytics/health?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch);
+        const response = await axios.get('https://pcpprd-app.acsu.buffalo.edu/analytics/health?startDate=' + this.state.startDateEpoch + '&endDate=' + this.state.endDateEpoch);
         let total = [];
         let healthy = [];
         let unhealthy = [];
