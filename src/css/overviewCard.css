@@ -12,6 +12,8 @@
 
 .card-text {
     font-weight: 500;
+    display: inline-block;
+    width: 100%;
 }
 
 .data-value {

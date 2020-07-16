@@ -98,7 +98,7 @@ class HourlyTotalContactDuration extends Component {
             },
             legend: {
                 align: 'right',
-                x: -30,
+                x: 0,
                 verticalAlign: 'top',
                 y: 25,
                 floating: false,
