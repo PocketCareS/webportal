@@ -10,6 +10,7 @@ class Sidenav extends Component {
                 data: [
                     { id: 1, icon: 'fa fa-line-chart', text: 'Analytics', link: '/analytics' },
                     // { id: 2, icon: 'fa fa-map-marker', text: 'Geo Fencing', link: '/geoFencing' }
+                    { id: 2, icon: 'fa fa-users', text: 'Contact Tracing', link: '/tracing' }
                 ]
             }, {
                 title: 'State Data',

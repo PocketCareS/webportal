@@ -6,6 +6,7 @@ import AnalyticsPage from './components/analyticsPage';
 import GeoFencing from './components/geoFencing';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import NYAnalytics from './components/nyAnalyticsPage';
+import ContactTracing from './components/contactTracing';
 
 class App extends Component {
   state = {
@@ -61,6 +62,7 @@ class App extends Component {
               <Route path="/analytics" component={AnalyticsPage} />
               {/* <Route path="/geoFencing" component={GeoFencing} /> */}
               <Route path="/nyanalytics" component={NYAnalytics} />
+              <Route path="/tracing" component={ContactTracing} />
               <Redirect from="/" to="/analytics" />
             </Switch>
           </div>
