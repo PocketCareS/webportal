@@ -53,17 +53,6 @@ class Sidenav extends Component {
             loading="lazy"
           />
         </div>
-        <div className="dropdown">
-          <button class="dropdown-btn-c">
-            Dropdown
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-container-c">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-        </div>
         <div className="menu-items-container">
           {this.state.menuItems.map((item) => (
             <React.Fragment>

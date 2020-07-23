@@ -9,3 +9,13 @@
 .isVisible {
     visibility: visible;
 }
+
+.navbar-toggler {
+    border: none;
+    border-width: 0;
+}
+
+.navbar-toggler:focus {
+    border: none;
+    outline: none;
+}
