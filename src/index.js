@@ -9,7 +9,8 @@ import "font-awesome/css/font-awesome.css";
 import $ from "jquery";
 import Popper from "popper.js";
 import App from "./App";
-import Main from "./Main";
+import Welcome from "./welcome";
+import Main from "./main";
 import { BrowserRouter } from "react-router-dom";
 
 const routing = (

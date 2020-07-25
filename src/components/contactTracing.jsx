@@ -94,10 +94,10 @@ class ContactTracing extends Component {
                 <th scope="col">Total Contact Duration (x no of contacts)</th> */}
                 {/* <th scope="col">Ten Meter Duration</th> */}
                 {/* <th scope="col">ZipCode</th> */}
-                <th scope="col">Id </th>
-                <th scope="col">UserId</th>
-                <th scope="col">Title</th>
-                <th scope="col">Body</th>
+                <th scope="col">Date</th>
+                <th scope="col">Max Duration of Encounter</th>
+                <th scope="col">Total Duration of Encounter</th>
+                <th scope="col">Number of Encounters</th>
                 <th>
                   <button
                     onClick={this.handleNotifyAll}
@@ -120,15 +120,15 @@ class ContactTracing extends Component {
                   <td>{d.id}</td>
                   <td>{d.userId}</td>
                   <td>{d.title}</td>
-                  <td>{d.body}</td>
-                  {/* <td>
+                  <td>{d.title}</td>
+                  <td>
                     <button
                       onClick={() => this.handleNotify(d)}
                       className="btn btn-danger btn-sm"
                     >
                       Notify
                     </button>
-                  </td> */}
+                  </td>
                 </tr>
               ))}
             </tbody>

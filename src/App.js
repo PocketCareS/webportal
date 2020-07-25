@@ -7,13 +7,14 @@ import GeoFencing from "./components/geoFencing";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NYAnalytics from "./components/nyAnalyticsPage";
 import ContactTracing from "./components/contactTracing";
-import Main from "./Main";
+import Welcome from "./welcome";
 
 class App extends Component {
   state = {
     isVisible: false,
     isSideNavVisible: true,
-    isUnivDropDownVisible: false,
+    isUnivDropDownVisible: true,
+    universitySelected: "University at Buffalo",
   };
 
   constructor(props) {
@@ -23,12 +24,14 @@ class App extends Component {
         isVisible: true,
         isSideNavVisible: false,
         isUnivDropDownVisible: true,
+        universitySelected: "University at Buffalo",
       };
     } else {
       this.state = {
         isVisible: false,
         isSideNavVisible: true,
         isUnivDropDownVisible: true,
+        universitySelected: "University at Buffalo",
       };
     }
   }
@@ -56,8 +59,9 @@ class App extends Component {
         <Navbar
           isVisible={this.state.isVisible}
           toggleSidenav={this.toggleSidenav}
-          isUnivDropDownVisible={this.isUnivDropDownVisible}
+          isUnivDropDownVisible={this.state.isUnivDropDownVisible}
         />
+        <p>{this.universitySelected}</p>
         <div className="body-container row">
           <div className="body-sidenav">
             <SideNav isSideNavVisible={this.state.isSideNavVisible} />
@@ -74,9 +78,10 @@ class App extends Component {
           >
             <Switch>
               <Route path="/analytics" component={AnalyticsPage} />
-              {/* <Route path="/geoFencing" component={GeoFencing} /> */}
+
               <Route path="/nyanalytics" component={NYAnalytics} />
               <Route path="/tracing" component={ContactTracing} />
+              <Redirect from="/" to="/Main" />
             </Switch>
           </div>
         </div>
