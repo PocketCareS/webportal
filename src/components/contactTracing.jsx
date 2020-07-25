@@ -39,21 +39,28 @@ class ContactTracing extends Component {
 
   async componentDidMount() {
     const response = await axios.get(
-      //   baseUrl +
-      //     "/user/contactTracing?deviceId=" +
-      //     this.state.value
-      "https://jsonplaceholder.typicode.com/posts"
+      baseUrl + "/analytics/contactTracing?deviceId=" + this.state.value
     );
-    console.log(response);
-    this.setState({
-      data: response.data,
+    const responseData = [];
+    Object.entries(response.data).map(([key, value]) => {
+      const fullDate = new Date(value.date * 1);
+      const element = {};
+      element.deviceId = key;
+      element.date =
+        fullDate.getMonth() +
+        "/" +
+        fullDate.getDate() +
+        "/" +
+        fullDate.getFullYear();
+      element.duration = value.maxContactDuration;
+      element.totalDuration = value.totalContactDuration;
+      element.totalEncounters = value.encounterCount;
+      responseData.push(element);
     });
-    console.log("date: " + this.state.data);
+    this.setState({ data: responseData });
   }
 
   render() {
-    if (this.state.data.length === 0)
-      return <p>"There are no contacts made for the given device!"</p>;
     return (
       <React.Fragment>
         <div className="analytics-page-container ">
@@ -81,58 +88,55 @@ class ContactTracing extends Component {
               </div>
             </div>
           </form>
-          <p>
-            Showing information of total {this.state.data.length} devices who
-            had close encounters with the given device.
-          </p>
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                {/* <th scope="col">#</th> */}
-                {/* <th scope="col">date </th>
-                <th scope="col">Max Single Session Duration</th>
-                <th scope="col">Total Contact Duration (x no of contacts)</th> */}
-                {/* <th scope="col">Ten Meter Duration</th> */}
-                {/* <th scope="col">ZipCode</th> */}
-                <th scope="col">Date</th>
-                <th scope="col">Max Duration of Encounter</th>
-                <th scope="col">Total Duration of Encounter</th>
-                <th scope="col">Number of Encounters</th>
-                <th>
-                  <button
-                    onClick={this.handleNotifyAll}
-                    className="btn btn-danger btn-sm"
-                  >
-                    Export Data
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.data.map((d) => (
-                // <tr key={d._id}>
-                //   <td>{index + 1}</td>
-                //   <td>{d.date}</td>
-                //   <td>{d.countTwo}</td>
-                //   <td>{d.countTen}</td>
-                // <td>{d.zipcode}</td>
-                <tr key={d.id}>
-                  <td>{d.id}</td>
-                  <td>{d.userId}</td>
-                  <td>{d.title}</td>
-                  <td>{d.title}</td>
-                  <td>
-                    <button
-                      onClick={() => this.handleNotify(d)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Notify
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+          {this.state.data.length === 0 ? (
+            <p>"There are no contacts made for the given device!"</p>
+          ) : (
+            <React.Fragment>
+              <p>
+                Showing information of total {this.state.data.length} devices
+                who had close encounters with the given device.
+              </p>
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Max Duration of Encounter</th>
+                    <th scope="col">Total Duration of Encounter</th>
+                    <th scope="col">Number of Encounters</th>
+                    <th>
+                      <button
+                        onClick={this.handleNotifyAll}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Export Data
+                      </button>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.data.map((d, index) => (
+                    <tr key={d.deviceId}>
+                      <td>{index + 1}</td>
+                      <td>{d.date}</td>
+                      <td>{d.duration}</td>
+                      <td>{d.totalDuration}</td>
+                      <td>{d.totalEncounters}</td>
+                      <td>
+                        <button
+                          onClick={() => this.handleNotify(d)}
+                          className="btn btn-danger btn-sm"
+                        >
+                          Notify
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </React.Fragment>
+          )}
         </div>
       </React.Fragment>
     );
