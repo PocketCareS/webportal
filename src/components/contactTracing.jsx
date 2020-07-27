@@ -5,13 +5,14 @@ import { baseUrl } from "../constants";
 import { getAllData } from "../services/contactTraceData";
 import { convertToCSV } from "../services/csvService";
 import { exportCSVFile } from "../services/csvService";
-
+import { Redirect } from "react-router-dom";
 class ContactTracing extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: false,
       value: "Enter Infected user's deviceId",
-      data: [],
+      data: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +42,7 @@ class ContactTracing extends Component {
     const response = await axios.get(
       baseUrl + "/analytics/contactTracing?deviceId=" + this.state.value
     );
+    const status = response === 401;
     const responseData = [];
     Object.entries(response.data).map(([key, value]) => {
       const fullDate = new Date(value.date * 1);
@@ -58,9 +60,20 @@ class ContactTracing extends Component {
       responseData.push(element);
     });
     this.setState({ data: responseData });
+    this.setState({ redirect: false });
   }
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { status: "401" }
+          }}
+        />
+      );
+    }
     return (
       <React.Fragment>
         <div className="analytics-page-container ">

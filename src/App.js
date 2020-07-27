@@ -8,13 +8,15 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import NYAnalytics from "./components/nyAnalyticsPage";
 import ContactTracing from "./components/contactTracing";
 import Welcome from "./welcome";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 class App extends Component {
   state = {
     isVisible: false,
     isSideNavVisible: true,
     isUnivDropDownVisible: true,
-    universitySelected: "University at Buffalo",
+    universitySelected: "University at Buffalo"
   };
 
   constructor(props) {
@@ -25,6 +27,7 @@ class App extends Component {
         isSideNavVisible: false,
         isUnivDropDownVisible: true,
         universitySelected: "University at Buffalo",
+        redirect: false
       };
     } else {
       this.state = {
@@ -32,10 +35,16 @@ class App extends Component {
         isSideNavVisible: true,
         isUnivDropDownVisible: true,
         universitySelected: "University at Buffalo",
+        redirect: false
       };
     }
   }
-
+  logout = e => {
+    cookies.remove("usertoken");
+    cookies.remove("username");
+    cookies.remove("university");
+    this.setState({ redirect: true });
+  };
   hideSidenav = () => {
     if (window.innerWidth < 1200) {
       this.setState({ isVisible: true, isSideNavVisible: false });
@@ -54,6 +63,17 @@ class App extends Component {
   };
 
   render() {
+    if (
+      cookies.get("usertoken") == undefined ||
+      cookies.get("usertoken") === ""
+    ) {
+      return <Redirect to={"/"} />;
+    }
+
+    if (this.state.redirect) {
+      return <Redirect to={"/"} />;
+    }
+    cookies.get("usertoken");
     return (
       <div className="main-container">
         <Navbar
@@ -61,11 +81,13 @@ class App extends Component {
           toggleSidenav={this.toggleSidenav}
           isUnivDropDownVisible={this.state.isUnivDropDownVisible}
         />
+
         <p>{this.universitySelected}</p>
         <div className="body-container row">
           <div className="body-sidenav">
             <SideNav isSideNavVisible={this.state.isSideNavVisible} />
           </div>
+
           <div
             className={
               "body-content " + (this.state.isVisible ? "body-left-align" : "")
@@ -78,10 +100,10 @@ class App extends Component {
           >
             <Switch>
               <Route path="/analytics" component={AnalyticsPage} />
-
               <Route path="/nyanalytics" component={NYAnalytics} />
               <Route path="/tracing" component={ContactTracing} />
-              <Redirect from="/" to="/Main" />
+              <Redirect exact from="/app" to="/analytics" />
+              <Route path="/" component={AnalyticsPage} />
             </Switch>
           </div>
         </div>

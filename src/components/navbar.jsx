@@ -3,10 +3,25 @@ import "../css/navbar.css";
 import "../images/logo.png";
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Link } from "react-router-dom";
-
+import Cookies from "universal-cookie";
+import { Redirect } from "react-router-dom";
+const cookies = new Cookies();
 class Navbar extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = { redirect: false };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  handleInputChange(event) {
+    cookies.remove("usertoken");
+    cookies.remove("username");
+    cookies.remove("university");
+    this.setState({ redirect: true });
+  }
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={"/"} />;
+    }
     console.log(this.props.isVisible);
     return (
       <nav className="navbar  navbar-expand-lg fixed-top navbar-light bg-light">
@@ -56,6 +71,7 @@ class Navbar extends Component {
                             </div>
                         </li>
                     </ul> */}
+
           <form
             className={
               "form-inline ml-auto " +
@@ -63,12 +79,50 @@ class Navbar extends Component {
             }
           >
             <div className="form-group ml-auto">
-              <select className="form-control" id="exampleFormControlSelect1">
-                <option>University at Buffalo - All Campuses</option>
-                <option>North Campus</option>
-                <option>South Campus</option>
-                <option>Downtown Campus</option>
-              </select>
+              {cookies.get("university") === "University at Buffalo" ? (
+                <select
+                  className="form-control"
+                  id="exampleFormControlSelect1"
+                  onChange={this.handleInputChange}
+                >
+                  <option>{cookies.get("university")} -All Campuses</option>
+                  <option>{cookies.get("university")} -North Campus</option>
+                  <option>{cookies.get("university")} -South Campus</option>
+                  <option>{cookies.get("university")} -Downtown Campus</option>
+                  <hr />
+                  <option>Logout</option>
+                </select>
+              ) : (
+                <select
+                  className="form-control"
+                  id="exampleFormControlSelect1"
+                  onChange={this.handleInputChange}
+                >
+                  <option>{cookies.get("university")} -All Campuses</option>
+
+                  <hr />
+                  <option>Logout</option>
+                </select>
+              )}
+              {/* <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={this.handleInputChange}
+              >
+                
+                    <option>{cookies.get("university")} -All Campuses</option>
+                    <option>{cookies.get("university")} -North Campus</option>
+                    <option>{cookies.get("university")} -South Campus</option>
+                    <option>
+                      {cookies.get("university")} -Downtown Campus
+                    </option>
+              
+               
+                  <option>{cookies.get("university")} -All Campuses</option>
+                
+                <hr />
+                <option>Logout</option>
+              </select> */}
             </div>
           </form>
         </div>

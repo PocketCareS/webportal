@@ -1,0 +1,16 @@
+.card {
+  margin: auto;
+  float: none;
+}
+
+.card-container {
+  width: 300px;
+  height: 300px;
+}
+
+.outer-card-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

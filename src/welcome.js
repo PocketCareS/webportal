@@ -10,7 +10,9 @@ import Navbar from "./components/navbar";
 import Select from "react-select";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-
+import LoginPage from "./login";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 class Welcome extends Component {
   state = {
     universityOptions: [
@@ -19,33 +21,34 @@ class Welcome extends Component {
       {
         label: "Hudson Valley Community College",
         value: 3,
-        link: "/analytics",
+        link: "/analytics"
       },
       { label: "Farmingdale State College", value: 4, link: "/analytics" },
       { label: "Genesee Community College", value: 5, link: "/analytics" },
       {
         label: "Herkimer County Community College",
         value: 6,
-        link: "/analytics",
-      },
+        link: "/analytics"
+      }
     ],
-    universitySelected: "",
+    universitySelected: ""
   };
 
   toggleSidenav = () => {
     this.setState({ isSideNavVisible: !this.state.isSideNavVisible });
   };
 
-  getValueOfSelectOne = (value) => {
+  getValueOfSelectOne = value => {
     console.log(value);
   };
 
-  handleOnChcange = (opt) => {
+  handleOnChcange = opt => {
     this.setState({ universitySelected: opt });
     console.log("onChange " + opt);
   };
 
   handleOnSubmit = () => {
+    cookies.set("university", this.state.universitySelected.label);
     console.log(this.state.universitySelected);
   };
 
@@ -66,14 +69,14 @@ class Welcome extends Component {
         <div className="dropdown-primary-container">
           <div className="app dropdown-container align-items-center text-center justify-content-center">
             <div className="container dropdown">
-              <label id="dropdown-label">Select campus to begin</label>
+              <label id="dropdown-label">Select university to begin</label>
               <Select
                 options={this.state.universityOptions}
-                onChange={(opt) => this.handleOnChcange(opt)}
+                onChange={opt => this.handleOnChcange(opt)}
               />
             </div>
             {this.state.universitySelected ? (
-              <NavLink to={this.state.universitySelected.link}>
+              <NavLink to={"/login"}>
                 <button
                   type="button"
                   className="mt-3 welcome-search btn btn-outline-secondary"
@@ -91,14 +94,17 @@ class Welcome extends Component {
         <Switch>
           <Route
             exact
-            path="/analytics"
-            component={() => (
-              <AnalyticsPage university={this.state.universitySelected} />
+            path="/login"
+            component={props => (
+              <LoginPage
+                {...props}
+                university={this.state.universitySelected}
+              />
             )}
           />
           {/* <Route path="/geoFencing" component={GeoFencing} /> */}
-          <Route exact path="/nyanalytics" component={NYAnalytics} />
-          <Route exact path="/tracing" component={ContactTracing} />
+          {/* <Route exact path="/nyanalytics" component={NYAnalytics} />
+          <Route exact path="/tracing" component={ContactTracing} /> */}
           {/* <Redirect from="/" to="/analytics" /> */}
         </Switch>
       </div>
