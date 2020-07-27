@@ -6,13 +6,15 @@ import { getAllData } from "../services/contactTraceData";
 import { convertToCSV } from "../services/csvService";
 import { exportCSVFile } from "../services/csvService";
 import { Redirect } from "react-router-dom";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 class ContactTracing extends Component {
   constructor(props) {
     super(props);
     this.state = {
       redirect: false,
       value: "Enter Infected user's deviceId",
-      data: []
+      data: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +26,7 @@ class ContactTracing extends Component {
   }
 
   handleSubmit(event) {
-    alert("All devices notified successfully!");
+    // alert("All devices notified successfully!");
     console.log(this.state.value);
     this.componentDidMount();
     event.preventDefault();
@@ -38,9 +40,46 @@ class ContactTracing extends Component {
     exportCSVFile("", this.state.data, "tracedData");
   };
 
+  handleNotify = (deviceId) => {
+    this.componentDidMountNotify(deviceId);
+  };
+
+  async componentDidMountNotify(deviceId) {
+    const deviceIdList = [];
+    deviceIdList.push(deviceId);
+    try {
+      await fetch(baseUrl + "/analytics/tracing/notify", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          token: cookies.get("userToken"),
+        },
+
+        body: JSON.stringify({
+          deviceIds: deviceIdList,
+        }),
+      })
+        .then((response) => response.json())
+        .then((result) => this.setState({ notifyResult: result }))
+        .catch((error) => this.setState({ error: error }));
+    } catch (e) {
+      console.log("error", e);
+      this.setState({ error: e });
+    }
+    console.log(this.state.notifyResult);
+    if (this.state.notifyResult === undefined) {
+      let fieldErrors = {};
+      fieldErrors["Error"] = "Please try again";
+      this.setState({ fieldErrors: fieldErrors });
+    }
+  }
+
   async componentDidMount() {
     const response = await axios.get(
-      baseUrl + "/analytics/contactTracing?deviceId=" + this.state.value
+      baseUrl + "/analytics/contactTracing?deviceId=" + this.state.value,
+      { headers: { token: cookies.get("userToken") } }
     );
     const status = response === 401;
     const responseData = [];
@@ -69,7 +108,7 @@ class ContactTracing extends Component {
         <Redirect
           to={{
             pathname: "/",
-            state: { status: "401" }
+            state: { status: "401" },
           }}
         />
       );
@@ -138,7 +177,7 @@ class ContactTracing extends Component {
                       <td>{d.totalEncounters}</td>
                       <td>
                         <button
-                          onClick={() => this.handleNotify(d)}
+                          onClick={() => this.handleNotify(d.deviceId)}
                           className="btn btn-danger btn-sm"
                         >
                           Notify

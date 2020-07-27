@@ -37,32 +37,32 @@ class AnalyticsPage extends Component {
       healthCardData: {
         header: "",
         date: "",
-        data: []
+        data: [],
       },
       hourlyGraphs: [
         {
           title: "Number of Close Encounters Today (Hourly)",
-          graphClass: "HourlyCloseContactDistribution"
+          graphClass: "HourlyCloseContactDistribution",
         },
         {
           title: "Total Duration of Close Encounters Today (Hourly)",
-          graphClass: "HourlyTotalContactDuration"
-        }
+          graphClass: "HourlyTotalContactDuration",
+        },
       ],
       graphs: [
         {
           title: "Number of Close Encounters (Daily)",
-          graphClass: "CloseContactDistribution"
+          graphClass: "CloseContactDistribution",
         },
         {
           title: "Total Duration of Close Encounters (Daily)",
-          graphClass: "TotalContactDuration"
+          graphClass: "TotalContactDuration",
         },
         {
           title: "Number of Users on campus (Daily)",
-          graphClass: "NumberOfUsers"
-        }
-      ]
+          graphClass: "NumberOfUsers",
+        },
+      ],
     };
   }
 
@@ -72,7 +72,7 @@ class AnalyticsPage extends Component {
         this.state.startDateEpoch +
         "&endDate=" +
         this.state.endDateEpoch,
-      { headers: { Authorization: cookies.get("userToken") } }
+      { headers: { token: cookies.get("userToken") } }
     );
     //   .then(results => {
     //     if (results.status === 401) {
@@ -84,19 +84,19 @@ class AnalyticsPage extends Component {
       response.data.dateWiseHealthAnalytics[this.state.endDateEpoch];
     const totalUsers = {
       title: "Total Users",
-      value: latestData.totalUsers
+      value: latestData.totalUsers,
     };
     const filled = {
       title: "Health Reports Available",
-      value: latestData.filled
+      value: latestData.filled,
     };
     const healthy = {
       title: "Healthy",
-      value: latestData.healthy
+      value: latestData.healthy,
     };
     const unhealthy = {
       title: "Unhealthy",
-      value: latestData.notHealthy
+      value: latestData.notHealthy,
     };
     let healthCardData = { ...this.state.healthCardData };
     healthCardData.header = "Overview";
@@ -117,7 +117,7 @@ class AnalyticsPage extends Component {
         <Redirect
           to={{
             pathname: "/",
-            state: { status: "401" }
+            state: { status: "401" },
           }}
         />
       );
@@ -138,7 +138,7 @@ class AnalyticsPage extends Component {
         </div>
         <p className="title">Hourly Analytics</p>
         <div className="analytics-page-container row">
-          {this.state.hourlyGraphs.map(graph => (
+          {this.state.hourlyGraphs.map((graph) => (
             <div className="col-xl-6">
               <ChartContainer title={graph.title}>
                 {this.graphToRender(graph)}
@@ -148,7 +148,7 @@ class AnalyticsPage extends Component {
         </div>
         <p className="title">Daily Analytics</p>
         <div className="analytics-page-container row">
-          {this.state.graphs.map(graph => (
+          {this.state.graphs.map((graph) => (
             <div className="col-xl-6">
               <ChartContainer title={graph.title}>
                 {this.graphToRender(graph)}
@@ -160,7 +160,7 @@ class AnalyticsPage extends Component {
     );
   }
 
-  graphToRender = graph => {
+  graphToRender = (graph) => {
     if (graph.graphClass === "CloseContactDistribution")
       return (
         <CloseContactDistribution
