@@ -1,16 +1,40 @@
-.card {
+.card-container {
   margin: auto;
   float: none;
-}
-
-.card-container {
-  width: 300px;
-  height: 300px;
+  max-width: 1000%;
+  min-width: 250px;
+  width: 450px;
+  height: auto;
 }
 
 .outer-card-container {
-  height: 100%;
+  height: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logo-welcome {
+  height: 100%;
+}
+
+.login-pocketcare {
+  font-size: 24px;
+  font-weight: 500;
+  /* color: #666666; */
+}
+
+.login-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  /* color: #666666; */
+}
+
+.change-university {
+  float: right
+}
+
+.university-title {
+  color: #0066ff;
 }
