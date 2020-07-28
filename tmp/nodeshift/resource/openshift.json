@@ -7,7 +7,7 @@
       "kind": "DeploymentConfig",
       "metadata": {
         "name": "pocketcare-webportal",
-        "namespace": "pocketcareplus",
+        "namespace": "default",
         "labels": {
           "project": "pocketcare-webportal",
           "version": "0.1.0",
@@ -19,8 +19,8 @@
           "app.openshift.io/runtime": "nodejs"
         },
         "annotations": {
-          "nodeshift/git-branch": "master",
-          "nodeshift/git-commit": "6b4d56da3335c7a30211055bfdde324ee81804ae"
+          "nodeshift/git-branch": "f/tracing",
+          "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
         }
       },
       "spec": {
@@ -44,7 +44,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "namespace": "pocketcareplus",
+                "namespace": "default",
                 "name": "pocketcare-webportal:latest"
               }
             }
@@ -59,8 +59,8 @@
               "app": "pocketcare-webportal"
             },
             "annotations": {
-              "nodeshift/git-branch": "master",
-              "nodeshift/git-commit": "6b4d56da3335c7a30211055bfdde324ee81804ae"
+              "nodeshift/git-branch": "f/tracing",
+              "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
             }
           },
           "spec": {
@@ -105,7 +105,7 @@
       },
       "metadata": {
         "name": "pocketcare-webportal",
-        "namespace": "pocketcareplus",
+        "namespace": "default",
         "labels": {
           "project": "pocketcare-webportal",
           "version": "0.1.0",
@@ -116,8 +116,8 @@
           "app.openshift.io/runtime": "nodejs"
         },
         "annotations": {
-          "nodeshift/git-branch": "master",
-          "nodeshift/git-commit": "6b4d56da3335c7a30211055bfdde324ee81804ae"
+          "nodeshift/git-branch": "f/tracing",
+          "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
         }
       }
     },

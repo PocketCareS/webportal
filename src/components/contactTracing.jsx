@@ -13,7 +13,7 @@ class ContactTracing extends Component {
     super(props);
     this.state = {
       redirect: false,
-      value: "Enter Infected user's deviceId",
+      value: "Enter COVID-19 infected user's unique ID for tracing",
       data: [],
     };
 
@@ -69,6 +69,7 @@ class ContactTracing extends Component {
       this.setState({ error: e });
     }
     console.log(this.state.notifyResult);
+    alert("User has been notified");
     if (this.state.notifyResult === undefined) {
       let fieldErrors = {};
       fieldErrors["Error"] = "Please try again";
@@ -99,6 +100,7 @@ class ContactTracing extends Component {
       responseData.push(element);
     });
     this.setState({ data: responseData });
+    //this.setState({ data: getAllData() });
     this.setState({ redirect: false });
   }
 
@@ -154,7 +156,9 @@ class ContactTracing extends Component {
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Max Duration of Encounter</th>
+                    <th scope="col">
+                      Max Duration of Single Encounter Session
+                    </th>
                     <th scope="col">Total Duration of Encounter</th>
                     <th scope="col">Number of Encounters</th>
                     <th>

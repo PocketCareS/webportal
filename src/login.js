@@ -22,17 +22,17 @@ class LoginPage extends React.Component {
       redirect: false,
       fieldErrors: "",
       loginResult: "",
-      errror: ""
+      errror: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  validateFields = e => {
+  validateFields = (e) => {
     e.preventDefault();
     let fieldErrors = {};
     let isValid = true;
@@ -70,17 +70,17 @@ class LoginPage extends React.Component {
         mode: "cors",
         headers: {
           Accept: "application/json",
-          "Content-type": "application/json"
+          "Content-type": "application/json",
         },
 
         body: JSON.stringify({
           userName: this.state.email,
-          password: this.state.password
-        })
+          password: this.state.password,
+        }),
       })
-        .then(response => response.json())
-        .then(result => this.setState({ loginResult: result }))
-        .catch(error => this.setState({ error: error }));
+        .then((response) => response.json())
+        .then((result) => this.setState({ loginResult: result }))
+        .catch((error) => this.setState({ error: error }));
     } catch (e) {
       console.log("error", e);
       this.setState({ error: e });
@@ -94,11 +94,11 @@ class LoginPage extends React.Component {
     } else {
       cookies.set("usertoken", this.state.loginResult.token, {
         maxAge: 60 * 60 * 3,
-        sameSite: strict
+        sameSite: "none",
       });
       cookies.set("username", this.state.email, {
         maxAge: 60 * 60 * 3,
-        sameSite: strict
+        sameSite: "none",
       });
       this.setState({ redirect: true });
     }
@@ -125,9 +125,13 @@ class LoginPage extends React.Component {
       // <div className="container login-container w-75">
       <React.Fragment>
         <div className="outer-card-container">
-
           <div className="card-container ">
-            <p className="login-title">Login - <span className="university-title">{cookies.get("university")}</span></p>
+            <p className="login-title">
+              Login -{" "}
+              <span className="university-title">
+                {cookies.get("university")}
+              </span>
+            </p>
             <div className="card text-center">
               {/* <div className="col-md-6 login-form"> */}
               <div className="card-body">
@@ -146,7 +150,7 @@ class LoginPage extends React.Component {
                       className="form-control"
                       type="text"
                       name="email"
-                      placeholder="Email"
+                      placeholder="UserName"
                       value={this.state.email}
                       onChange={this.handleChange}
                       onKeyPress={this.enterPressed.bind(this)}
@@ -191,14 +195,16 @@ class LoginPage extends React.Component {
                 </form>
               </div>
             </div>
-            <Link to="/" className="change-university"> Change University? </Link>
+            <Link to="/" className="change-university">
+              {" "}
+              Change University?{" "}
+            </Link>
           </div>
-          {/* <Switch>
-          <Route path="/analytics" component={AnalyticsPage} />
-          <Route path="/nyanalytics" component={NYAnalytics} />
-          <Route path="/tracing" component={ContactTracing} />
-        </Switch> */}
-
+          <Switch>
+            <Route path="/analytics" component={AnalyticsPage} />
+            <Route path="/nyanalytics" component={NYAnalytics} />
+            <Route path="/tracing" component={ContactTracing} />
+          </Switch>
         </div>
       </React.Fragment>
     );

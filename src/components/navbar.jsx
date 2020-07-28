@@ -13,10 +13,12 @@ class Navbar extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   handleInputChange(event) {
-    cookies.remove("usertoken");
-    cookies.remove("username");
-    cookies.remove("university");
-    this.setState({ redirect: true });
+    if (event.target.value === "Logout") {
+      cookies.remove("usertoken");
+      cookies.remove("username");
+      cookies.remove("university");
+      this.setState({ redirect: true });
+    }
   }
   render() {
     if (this.state.redirect) {
