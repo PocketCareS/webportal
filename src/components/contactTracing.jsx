@@ -13,7 +13,7 @@ class ContactTracing extends Component {
     super(props);
     this.state = {
       redirect: false,
-      value: "Enter COVID-19 infected user's unique ID for tracing",
+      value: "Enter COVID-19 infected patient's App-Client ID for tracing",
       data: [],
     };
 
@@ -37,7 +37,16 @@ class ContactTracing extends Component {
   disableButton = () => {};
 
   handleNotifyAll = () => {
-    exportCSVFile("", this.state.data, "tracedData");
+    var headers = {
+      deviceId: "App-Client-ID".replace(/,/g, ""), // remove commas to avoid errors
+      date: "Date",
+      duration: "Max Duration of Single Encounter Session",
+      totalDuration: "Total Duration of Encounter",
+      totalEncounters: "Number of Encounters",
+      contactInformation: "Other Encounter details",
+    };
+
+    exportCSVFile(headers, this.state.data, "tracedData");
   };
 
   handleNotify = (deviceId) => {
@@ -97,6 +106,7 @@ class ContactTracing extends Component {
       element.duration = value.maxContactDuration;
       element.totalDuration = value.totalContactDuration;
       element.totalEncounters = value.encounterCount;
+      element.contactInformation = JSON.stringify(value.contactInformation);
       responseData.push(element);
     });
     this.setState({ data: responseData });
@@ -155,13 +165,19 @@ class ContactTracing extends Component {
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">
+                    <th style={{ width: "20%" }} scope="col">
+                      Date
+                    </th>
+                    <th style={{ width: "20%" }} scope="col">
                       Max Duration of Single Encounter Session
                     </th>
-                    <th scope="col">Total Duration of Encounter</th>
-                    <th scope="col">Number of Encounters</th>
-                    <th>
+                    <th style={{ width: "20%" }} scope="col">
+                      Total Duration of Encounter
+                    </th>
+                    <th style={{ width: "20%" }} scope="col">
+                      Number of Encounters
+                    </th>
+                    <th style={{ width: "20%" }}>
                       <button
                         onClick={this.handleNotifyAll}
                         className="btn btn-danger btn-sm"
