@@ -19,8 +19,8 @@
           "app.openshift.io/runtime": "nodejs"
         },
         "annotations": {
-          "nodeshift/git-branch": "f/tracing",
-          "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
+          "nodeshift/git-branch": "master",
+          "nodeshift/git-commit": "28bbe1707f1eb9bdb621759f26081e8dbec9b9e1"
         }
       },
       "spec": {
@@ -59,8 +59,8 @@
               "app": "pocketcare-webportal"
             },
             "annotations": {
-              "nodeshift/git-branch": "f/tracing",
-              "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
+              "nodeshift/git-branch": "master",
+              "nodeshift/git-commit": "28bbe1707f1eb9bdb621759f26081e8dbec9b9e1"
             }
           },
           "spec": {
@@ -116,8 +116,8 @@
           "app.openshift.io/runtime": "nodejs"
         },
         "annotations": {
-          "nodeshift/git-branch": "f/tracing",
-          "nodeshift/git-commit": "a5a6ebcfc15ca156b4a4df924b53e32db7766346"
+          "nodeshift/git-branch": "master",
+          "nodeshift/git-commit": "28bbe1707f1eb9bdb621759f26081e8dbec9b9e1"
         }
       }
     },

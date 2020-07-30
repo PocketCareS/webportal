@@ -86,6 +86,21 @@ class ContactTracing extends Component {
     }
   }
 
+  // Column 1 : User Index
+  // Column 2: First Contact Date - sortable
+  // Column 3: First Contact Duration -  sortable
+  // Column 4 : Max Contact Duration - on the first line,  and (Single Session) - on the 2nd line; - this is sortable I assume
+  // Column 5:  Max Contact Date   - no need to be sortable.
+  // Column 6: Last Contact Duration - on the first line,  and (Single Session) - on the 2nd line; - this is sortable I assume
+  // Column 7:  Last Contact Date   - no need to be sortable.
+  // Column 8: Total Contact Duration - on the first line,  and (All Sessions) - on the 2nd line; - this is sortable I assume
+  // Column 9: Total # of Sessions -  - no need to be sortable.
+  // Column 10 : Symptoms Reported?  { the content could be N/A, No, or Yes).
+  // Column 11:  Symptom Date {the content could be N/Al)
+  // Column 12:  Last Health Report Date {this could be different from Column 11)
+  // Column 13:  Export Data  -  on the first line and (Detailed)
+  // Column 14   Notified ? ( Yes, No)
+
   async componentDidMount() {
     const response = await axios.get(
       baseUrl + "/analytics/contactTracing?deviceId=" + this.state.value,
@@ -107,6 +122,13 @@ class ContactTracing extends Component {
       element.totalDuration = value.totalContactDuration;
       element.totalEncounters = value.encounterCount;
       element.contactInformation = JSON.stringify(value.contactInformation);
+      element.firstContactDate = "N/A";
+      element.firstContactDuration = "N/A";
+      element.lastContactDate = "N/A";
+      element.lastContactDuration = "N/A";
+      element.symptomsDate = "N/A";
+      element.symptomsReported = "N/A";
+      element.lastHealthReportDate = "N/A";
       responseData.push(element);
     });
     this.setState({ data: responseData });
@@ -165,19 +187,18 @@ class ContactTracing extends Component {
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col">#</th>
-                    <th style={{ width: "20%" }} scope="col">
-                      Date
-                    </th>
-                    <th style={{ width: "20%" }} scope="col">
-                      Max Duration of Single Encounter Session
-                    </th>
-                    <th style={{ width: "20%" }} scope="col">
-                      Total Duration of Encounter
-                    </th>
-                    <th style={{ width: "20%" }} scope="col">
-                      Number of Encounters
-                    </th>
-                    <th style={{ width: "20%" }}>
+
+                    <th scope="col">First Contact Duration</th>
+
+                    <th scope="col">Last Contact Duration</th>
+
+                    <th scope="col">Max Contact Duration</th>
+
+                    <th scope="col">Total Contact Duration</th>
+                    <th scope="col">Total Sessions</th>
+                    <th scope="col">Symptoms Reported</th>
+                    <th scope="col">Last Health Reported Date</th>
+                    <th>
                       <button
                         onClick={this.handleNotifyAll}
                         className="btn btn-danger btn-sm"
@@ -191,17 +212,42 @@ class ContactTracing extends Component {
                   {this.state.data.map((d, index) => (
                     <tr key={d.deviceId}>
                       <td>{index + 1}</td>
-                      <td>{d.date}</td>
-                      <td>{d.duration}</td>
+
+                      <td>
+                        {d.firstContactDuration}
+                        <br></br>({d.firstContactDate})
+                      </td>
+                      <td>
+                        {d.lastContactDuration}
+                        <br></br>({d.lastContactDate})
+                      </td>
+                      <td>
+                        {d.duration}
+                        <br></br>({d.date})
+                      </td>
                       <td>{d.totalDuration}</td>
                       <td>{d.totalEncounters}</td>
                       <td>
-                        <button
-                          onClick={() => this.handleNotify(d.deviceId)}
-                          className="btn btn-danger btn-sm"
-                        >
-                          Notify
-                        </button>
+                        {d.symptomsReported}
+                        <br></br>({d.symptomsDate})
+                      </td>
+                      <td>{d.lastHealthReportDate}</td>
+                      <td>
+                        {index === 1 || index === 5 ? (
+                          <button
+                            onClick={() => this.handleNotify(d.deviceId)}
+                            className="btn btn-sm btn-success"
+                          >
+                            Notifiied
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => this.handleNotify(d.deviceId)}
+                            className="btn btn-sm btn-danger"
+                          >
+                            Notify
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
