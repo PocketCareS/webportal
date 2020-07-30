@@ -188,13 +188,13 @@ class ContactTracing extends Component {
                   <tr>
                     <th scope="col">#</th>
 
-                    <th scope="col">First Contact Duration</th>
+                    <th scope="col">First Contact Duration (in mins)</th>
 
-                    <th scope="col">Last Contact Duration</th>
+                    <th scope="col">Last Contact Duration (in mins)</th>
 
-                    <th scope="col">Max Contact Duration</th>
+                    <th scope="col">Max Contact Duration (in mins)</th>
 
-                    <th scope="col">Total Contact Duration</th>
+                    <th scope="col">Total Contact Duration (in mins)</th>
                     <th scope="col">Total Sessions</th>
                     <th scope="col">Symptoms Reported</th>
                     <th scope="col">Last Health Reported Date</th>
