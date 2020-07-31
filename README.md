@@ -56,7 +56,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
 2. Once installed.
 3. Open the openshift console
 4. Get the login command
-5. ![](RackMultipart20200731-4-1p1bw0t_html_4695d32a90c2a8da.png)
+5. ![](assets/2.png)
 6. Copy and paste the command in terminal at the folder where the react application source code resides.
 7. On the terminal in the project directory run the commands as
     1. ```npm install```
@@ -64,13 +64,14 @@ Before you begin, make sure you satisfy the following requirements in order to r
     2. ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
 9. This will install the react application on the openshift and give the public url in the console.
 
-### Some Web Portals Screenshots
+### Web Portals Screenshots
 
-1.
-2.
-3.
-4.
-5.
+1.![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
+2.![University Selction](assets/3.png)
+3.![User Login](assets/4.png)
+4.![Analytics DashBoard](assets/5.png)
+5.![New York Analytics](assets/5.png)
+6.![Contact Tracing](assets/1.png)
 
 
 ## How does PocketCare S Work?
