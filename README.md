@@ -111,7 +111,7 @@ You can find more information about PocketCare S here:
 
 ## License 
 
-This project is licensed under the Apache 2 License - see the LICENSE file for details
+This project is licensed under the Apache 2 License - see the [LICENSE](https://github.com/PocketCareS/webportal/blob/master/LICENSE) file for details
 
 ## Acknowledgements
 Special thanks to all who helped bring the project to fruition:
