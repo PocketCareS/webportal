@@ -1,22 +1,38 @@
+/*
+ * Copyright 2020 University at Buffalo
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 .chart-container {
-    width: 100%;
-    border: 0.5px solid rgb(199, 198, 198);
-    border-radius: 5px;
-    margin: 0px 0px 30px 0px;
-    height: 450px;
+  width: 100%;
+  border: 0.5px solid rgb(199, 198, 198);
+  border-radius: 5px;
+  margin: 0px 0px 30px 0px;
+  height: 450px;
 }
 
 .chart-container-title {
-    height: auto;
-    width: 100%;
-    border: 0.5px solid rgb(199, 198, 198);
-    border-radius: 5px 5px 0px 0px;
-    background-color: #F2F2F2;
-    padding: 12px 12px 12px 12px;
-    font-weight: 500;
+  height: auto;
+  width: 100%;
+  border: 0.5px solid rgb(199, 198, 198);
+  border-radius: 5px 5px 0px 0px;
+  background-color: #f2f2f2;
+  padding: 12px 12px 12px 12px;
+  font-weight: 500;
 }
 
 .chart-container-body {
-    height: 450px;
-    width: 100%;
+  height: 450px;
+  width: 100%;
 }

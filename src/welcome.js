@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 University at Buffalo
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import React, { Component } from "react";
 import "./css/welcome.css";
 import { Route, Switch, Redirect, Link, NavLink } from "react-router-dom";
@@ -21,28 +37,28 @@ class Welcome extends Component {
       {
         label: "Hudson Valley Community College",
         value: 3,
-        link: "/analytics"
+        link: "/analytics",
       },
       { label: "Farmingdale State College", value: 4, link: "/analytics" },
       { label: "Genesee Community College", value: 5, link: "/analytics" },
       {
         label: "Herkimer County Community College",
         value: 6,
-        link: "/analytics"
-      }
+        link: "/analytics",
+      },
     ],
-    universitySelected: ""
+    universitySelected: "",
   };
 
   toggleSidenav = () => {
     this.setState({ isSideNavVisible: !this.state.isSideNavVisible });
   };
 
-  getValueOfSelectOne = value => {
+  getValueOfSelectOne = (value) => {
     console.log(value);
   };
 
-  handleOnChcange = opt => {
+  handleOnChcange = (opt) => {
     this.setState({ universitySelected: opt });
     console.log("onChange " + opt);
   };
@@ -72,7 +88,7 @@ class Welcome extends Component {
               <label id="dropdown-label">Select university to begin</label>
               <Select
                 options={this.state.universityOptions}
-                onChange={opt => this.handleOnChcange(opt)}
+                onChange={(opt) => this.handleOnChcange(opt)}
               />
             </div>
             {this.state.universitySelected ? (
@@ -95,7 +111,7 @@ class Welcome extends Component {
           <Route
             exact
             path="/login"
-            component={props => (
+            component={(props) => (
               <LoginPage
                 {...props}
                 university={this.state.universitySelected}
