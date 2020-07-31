@@ -85,10 +85,6 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
-### Technological Advances
-
-![Tech](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCare_S_Road_Map.png)
-
 ### Security and Privacy 
 
 ![Security](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS-Privacy.png)
