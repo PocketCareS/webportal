@@ -31,8 +31,6 @@ PocketCare S is designed to report social distance information without collectin
 
 ## Getting Started  
 
-**Due to emulators not supporting bluetooth, close encounter detection will not work on emulators.**
-
 ### Prerequisites for installation on local machine
 
 Before you begin, make sure you satisfy the following requirements in order to run the server on your local system:
