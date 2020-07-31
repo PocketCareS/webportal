@@ -48,6 +48,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
   "https://pocketcares-server-app-pocketcares.mycluster-dal10-b-746843-c6bcb6f7fc0a61609dee42a1778bf377-0000.us-south.containers.appdomain.cloud";```
 5. On the terminal in the project directory run the commands as
     ```npm install```
+    
     ```npm start```
 
 ### Steps for installation on Openshift 
@@ -59,6 +60,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
 6. Copy and paste the command in terminal at the folder where the react application source code resides.
 7. On the terminal in the project directory run the commands as
     ```npm install```
+    
     ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
 9. This will install the react application on the openshift and give the public url in the console.
 
