@@ -1,68 +1,115 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PocketCare S - WebPortal (FrontEnd)
 
-## Available Scripts
+<img src="logo.png" width="300">
 
-In the project directory, you can run:
+**Call for code submission for COVID-19 track.**
 
-### `npm start`
+PocketCare S is a comprehensive smartphone-based solution for monitoring close encounters. It is a bluetooth low energy (BLE) based solution which enables smartphones to send and receive anonymous beacon signals. It checks the distance between a smartphone and another beacon (or smartphone running PocketCare S) to see if they are close to each other (less than 2m). If so, the smartphone records the duration of such a close encounter with another beacon. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+PocketCare S is designed to report social distance information without collecting or revealing any personally identifiable information about any specific individual.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+## Contents 
+1. [Demo Video](#demo-video) 
+2. [The Architecture](#the-architecture)
+3. [Getting Started](#getting-started)
+4. [How does PocketCare S Work?](#how-does-pocketcare-s-work)
+5. [Built With](#built-with)
+6. [Project RoadMap](#project-roadmap)
+7. [Further Readings](#further-readings)
+8. [License](#license)
+9. [Acknowledgments](#acknowledgements)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Demo Video 
 
-### `npm run build`
+[![Demo](http://img.youtube.com/vi/JnOWwagUgxQ/0.jpg)](http://www.youtube.com/watch?v=JnOWwagUgxQ "PocketCare S Demo")
+ 
+ 
+## The Architecture
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Architecture](PocketCareS_Design_Simplified.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Getting Started 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Due to emulators not supporting bluetooth, close encounter detection will not work on emulators.**
 
-### `npm run eject`
+### Prerequisites for installation on local machine
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Before you begin, make sure you satisfy the following requirements in order to run the server on your local system:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. NPM (node package manager) which can be installed from [here](https://nodejs.org/en/download/)
+   
+### Steps for running on local system
+1. Clone the repository
+2. Open the project on Visual Studio Code.
+3. search for file constants.js
+4. Update the Server API URL ans save here
+   ``` export const baseUrl =
+  "https://pocketcares-server-app-pocketcares.mycluster-dal10-b-746843-c6bcb6f7fc0a61609dee42a1778bf377-0000.us-south.containers.appdomain.cloud";```
+5. On the terminal in the project directory run the commands as
+    ```npm install```
+    ```npm start```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Steps for installation on Openshift 
+1. Install the OC cli on your system using the following [link](https://mirror.openshift.com/pub/openshift-v4/clients/oc/)
+2. Once installed.
+3. Open the openshift console
+4. Get the login command
+5. ![](RackMultipart20200731-4-1p1bw0t_html_4695d32a90c2a8da.png)
+6. Copy and paste the command in terminal at the folder where the react application source code resides.
+7. On the terminal in the project directory run the commands as
+    ```npm install```
+    ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
+9. This will install the react application on the openshift and give the public url in the console.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Some Web Portals Screenshots
 
-## Learn More
+1.
+2.
+3.
+4.
+5.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How does PocketCare S Work?
 
-### Code Splitting
+### Key Highlights (Mobile Application)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. Close encounter data will be displayed in the mobile application after a close encounter session starts. A close encounter session starts when two people are within **2 meters** for at least **5 minutes**. 
+2. The **virtual bluetooth name** changes every hour to ensure **user privacy**. 
+3. Data upload to the server takes place every hour.
+4. Data is stored in user's phone for a maximum of 14 days. 
 
-### Analyzing the Bundle Size
+### Detailed Architecture 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![Working](PocketCareS_Design_Technical.png)
 
-### Making a Progressive Web App
+### Technological Advances
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![Tech](PocketCareS-TechAdvances.png)
 
-### Advanced Configuration
+### Security and Privacy 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+![Security](PocketCareS-Privacy.png)
 
-### Deployment
+For a more detailed description, refer to [further reading](#further-readings) section. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+## Built With 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+In this submission, we have used IBM’s Cloud **Red Hat OpenShift** to deploy our server (using **OpenJDK 8**), database (using **MongoDB**), the web portal (using **Node Js server**) and **IBM Push notification service** from **IBM Bluemix** in the android application of PocketCare S as a proof of concept. In the future, we will consider integrating other IBM services into the PocketCare S solution.
+
+## Project RoadMap 
+
+## Further Readings
+
+You can find more information about PocketCare S here:
+
+1. [Website](https://engineering.buffalo.edu/computer-science-engineering/pocketcares.html) 
+2. [White Paper](https://docs.google.com/document/d/e/2PACX-1vT6UqA3HByzG5Di576gmz-JWzgKOFx5KLYGgJMpxcmWkOXYJ_vUFz2h1w2LnDNWI4y-xnyKhPi_s70p/pub)
+
+## License 
+
+This project is licensed under the Apache 2 License - see the LICENSE file for details
+
+## Acknowledgements
