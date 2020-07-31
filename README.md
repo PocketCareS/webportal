@@ -1,6 +1,6 @@
 # PocketCare S - WebPortal (FrontEnd)
 
-<img src="logo.png" width="300">
+<img src="https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/logo.png" width="300">
 
 **Call for code submission for COVID-19 track.**
 
@@ -27,9 +27,9 @@ PocketCare S is designed to report social distance information without collectin
  
 ## The Architecture
 
-![Architecture](PocketCareS_Design_Simplified.png)
+![Architecture](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Simplified.png)
 
-## Getting Started 
+## Getting Started  
 
 **Due to emulators not supporting bluetooth, close encounter detection will not work on emulators.**
 
@@ -84,15 +84,15 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ### Detailed Architecture 
 
-![Working](PocketCareS_Design_Technical.png)
+![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
 ### Technological Advances
 
-![Tech](PocketCareS-TechAdvances.png)
+![Tech](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCare_S_Road_Map.png)
 
 ### Security and Privacy 
 
-![Security](PocketCareS-Privacy.png)
+![Security](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS-Privacy.png)
 
 For a more detailed description, refer to [further reading](#further-readings) section. 
 
