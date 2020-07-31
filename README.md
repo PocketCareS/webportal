@@ -44,12 +44,12 @@ Before you begin, make sure you satisfy the following requirements in order to r
 2. Open the project on Visual Studio Code.
 3. search for file constants.js
 4. Update the Server API URL ans save here
-   ``` export const baseUrl =
-  "https://pocketcares-server-app-pocketcares.mycluster-dal10-b-746843-c6bcb6f7fc0a61609dee42a1778bf377-0000.us-south.containers.appdomain.cloud";```
+   export const baseUrl =
+  "https://pocketcares-server-app-pocketcares.mycluster-dal10-b-746843-c6bcb6f7fc0a61609dee42a1778bf377-0000.us-south.containers.appdomain.cloud";
 5. On the terminal in the project directory run the commands as
-    ```npm install```
+    1. ```npm install```
     
-    ```npm start```
+    2. ```npm start```
 
 ### Steps for installation on Openshift 
 1. Install the OC cli on your system using the following [link](https://mirror.openshift.com/pub/openshift-v4/clients/oc/)
@@ -59,9 +59,9 @@ Before you begin, make sure you satisfy the following requirements in order to r
 5. ![](RackMultipart20200731-4-1p1bw0t_html_4695d32a90c2a8da.png)
 6. Copy and paste the command in terminal at the folder where the react application source code resides.
 7. On the terminal in the project directory run the commands as
-    ```npm install```
+    1. ```npm install```
     
-    ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
+    2. ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
 9. This will install the react application on the openshift and give the public url in the console.
 
 ### Some Web Portals Screenshots
