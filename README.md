@@ -66,12 +66,12 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ### Web Portals Screenshots
 
-1.![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
-2.![University Selction](assets/3.png)
-3.![User Login](assets/4.png)
-4.![Analytics DashBoard](assets/5.png)
-5.![New York Analytics](assets/5.png)
-6.![Contact Tracing](assets/1.png)
+1.Single Sign On ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
+2.University Selction ![University Selction](assets/3.png)
+3.User Login ![User Login](assets/4.png)
+4.Analytics DashBoard ![Analytics DashBoard](assets/5.png)
+5.New York Analytics ![New York Analytics](assets/5.png)
+6.Contact Tracing ![Contact Tracing](assets/1.png)
 
 
 ## How does PocketCare S Work?
