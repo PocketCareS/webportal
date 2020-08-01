@@ -1,4 +1,4 @@
-#Web Portal - Screenshots 
+# Web Portal - Screenshots 
 
 1. Single Sign On  ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
 
