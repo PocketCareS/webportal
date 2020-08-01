@@ -79,10 +79,13 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ### Key Highlights (Mobile Application)
 
-1. Close encounter data will be displayed in the mobile application after a close encounter session starts. A close encounter session starts when two people are within **2 meters** for at least **5 minutes**. 
-2. The **virtual bluetooth name** changes every hour to ensure **user privacy**. 
-3. Data upload to the server takes place every hour.
-4. Data is stored in user's phone for a maximum of 14 days. 
+1. PocketCare S uses **Bluetooth Low Energy (BLE)** to discover and compute the duration **close encounters**. 
+2. A **close encounter** session starts when two people are within **2 meters** for at least **5 minutes**. 
+3. **Close encounter** data will be displayed in the mobile application after a close encounter session starts. 
+4. Users are **notified immediately** if a close encounter session exceeds **10 minutes**.
+5. The **virtual bluetooth name** changes **every hour** to ensure **user privacy**. 
+6. Data stored in the mobile application is **anonymized** (contains no Personally Identifiable Information) and consists of **daily health report** and **close encounters** for a **maximum period of 14 days.**
+7. Data upload to the server takes place **every hour**.
 
 ### Detailed Architecture 
 
@@ -135,6 +138,6 @@ This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE)
 
 Special thanks to all who helped bring the project to fruition:
 
-Sourav Samanta, Rishabh Joshi, Jeetendra Gan, Shanelle Ileto, Aritra Paul, Dr. Peter Winkelstein, Dr. Matthew R. Bonner, Kevin Wang, Chen Yuan, Dheeraj Bhatia, Latheeshwarraj Mohanraj, Dr. Wen Dong, Dr. Tong Guan, Dr. Marina Blanton, Sasha Shapiro, Stephen Fung
+Sourav Samanta, Rishabh Joshi, Jeetendra Gan, Shanelle Ileto, Aritra Paul, Dr. Peter Winkelstein, Dr. Matthew R. Bonner, Kevin Wang, Chen Yuan, Dheeraj Bhatia, Latheeshwarraj Mohanraj, Dr. Wen Dong, Dr. Tong Guan, Dr. Marina Blanton, Sasha Shapiro, Stephen Fung, David G. Young
 
 And our deepest gratitude for the support of **University at Buffalo**.
