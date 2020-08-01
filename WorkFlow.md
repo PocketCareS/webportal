@@ -8,6 +8,8 @@ Note: This step is removed for the current submission as University Single Sign 
 ![University Selction](assets/3.png)
 ## 3. User Login  
 ![User Login](assets/4.png)
+The credentials for this step can be obtained from the [here]()
+
 ## 4. Analytics DashBoard  
 ![Analytics DashBoard](assets/9.PNG)
 ![](assets/7.PNG)
