@@ -1,6 +1,8 @@
 # PocketCare S - Web Portal (Front End)
 
+<p align="center">
 <img src="https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/logo.png" width="300">
+</p>
 
 **Call for code submission for COVID-19 track.**
 
