@@ -18,7 +18,7 @@ const tracingData = [
   {
     id: "ds;lkfjsd;klskdjflksdjf",
     duration: "19",
-    totalDuration: "29",
+    totalDuration: "49",
     totalEncounters: "4",
     date: "23 July 2020",
     firstContactDate: "23 July 2020",
@@ -40,7 +40,7 @@ const tracingData = [
     lastContactDate: "28 July 2020",
     lastContactDuration: "9",
     symptomsDate: "25 July 2020",
-    symptomsReported: "fever,cough",
+    symptomsReported: "fever;cough",
     lastHealthReportDate: "28 July 2020",
   },
   {
@@ -82,7 +82,7 @@ const tracingData = [
     lastContactDate: "28 July 2020",
     lastContactDuration: "7",
     symptomsDate: "25 July 2020",
-    symptomsReported: "fever,cough,sneeze",
+    symptomsReported: "fever;cough;sneeze",
     lastHealthReportDate: "28 July 2020",
   },
   {

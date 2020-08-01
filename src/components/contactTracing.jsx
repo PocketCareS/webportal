@@ -55,11 +55,18 @@ class ContactTracing extends Component {
   handleNotifyAll = () => {
     var headers = {
       deviceId: "App-Client-ID".replace(/,/g, ""), // remove commas to avoid errors
-      date: "Date",
-      duration: "Max Duration of Single Encounter Session",
-      totalDuration: "Total Duration of Encounter",
-      totalEncounters: "Number of Encounters",
+      date: "Max Contact Duration date",
+      duration: "First Contact Duration (in mins)",
+      totalDuration: "Total Contact Duration (in mins)",
+      totalEncounters: "Total Sessions",
       contactInformation: "Other Encounter details",
+      firstContactDate: "First Contact Duration Date",
+      firstContactDuration: "First Contact Duration ",
+      lastContactDate: "First Contact Duration Date",
+      lastContactDuration: "Last Contact Duration",
+      symptomsDate: "Symptoms Date",
+      symptomsReported: "Symptoms reported",
+      lastHealthReportDate: "Last Health Reported Date",
     };
 
     exportCSVFile(headers, this.state.data, "tracedData");
