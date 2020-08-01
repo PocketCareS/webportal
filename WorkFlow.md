@@ -12,4 +12,4 @@ Note: This step is removed for the current submission as University Single Sign 
 #### 5. New York Analytics  ![New York Analytics](assets/10.PNG)
 #### 6. Contact Tracing  ![Contact Tracing](assets/1.png)
 
-How Contact Tracing works is explained [here](https://github.com/PocketCareS/webportal/blob/master/README.md#steps-to-perform-contact-tracing).
+How Contact Tracing works is explained [here](https://github.com/PocketCareS/WebPortal#steps-to-send-push-notifications-for-exposure-contact-tracing).
