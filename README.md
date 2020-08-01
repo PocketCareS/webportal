@@ -62,18 +62,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
      ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
 6. This will install the react application on Openshift and public url will be provided in terminal logs.
 
-### Web Portal - Screenshots
-
-1. Single Sign On  ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
-
-2. University Selection  ![University Selction](assets/3.png)
-3. User Login  ![User Login](assets/4.png)
-4. Analytics DashBoard  
-![Analytics DashBoard](assets/9.PNG)
-![](assets/7.PNG)
-![](assets/8.PNG)
-5. New York Analytics  ![New York Analytics](assets/10.PNG)
-6. Contact Tracing  ![Contact Tracing](assets/1.png)
+### [Web Portal - Screenshots](https://github.com/PocketCareS/webportal/blob/master/WorkFlow.md#web-portal---screenshots)
 
 #### Steps to perform Contact Tracing.
 1. Get the patient's App-Client ID following the steps as mentioned [here](https://github.com/PocketCareS/PocketCareS-Android#getting-app-client-id)
