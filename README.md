@@ -91,9 +91,10 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
+
 ### Security and Privacy 
 
-![Security](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS-Privacy.png)
+PocketCare S cares values the security and privacy of its users. The app does not collect any private information about an individual person.  All the data collected is anonymous and will not reveal any personally identifiable information. An Infographic with this information can be found [here](https://engineering.buffalo.edu/content/dam/engineering/computer-science-engineering/images/pocketcare/PocketCareS.pdf).
 
 
 **For a more detailed description, refer to the [additional information](#additional-information) section.**
