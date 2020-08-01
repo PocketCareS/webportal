@@ -67,14 +67,14 @@ Before you begin, make sure you satisfy the following requirements in order to r
 ### Web Portal - Screenshots
 [Click here](https://github.com/PocketCareS/webportal/blob/master/WorkFlow.md#web-portal---screenshots) to view the screenshots.
 
-#### Steps to perform Contact Tracing.
-1. Get the patient's App-Client ID following the steps as mentioned [here](https://github.com/PocketCareS/PocketCareS-Android#getting-app-client-id)
+#### Steps to send Push Notifications for Exposure (Contact Tracing).
+1. Get the patient's App Client ID following the steps as mentioned [here](https://github.com/PocketCareS/PocketCareS-Android#getting-app-client-id)
 2. Copy and paste the ID in the text box with the label "Enter COVID-19 infected patient's App-Client ID for tracing".
-3. On Start tracing the web portal will fetch all the APP-Client ID which have come in contact with the infected user within 14 days and had atleast 5 minutes of close encounter.
-4. The close encountered App-Client ID with their respective encouter details will be displayed as shown in **Contact Tracing Screenshot**
-5. The information displayed is the brief information based on which tracer can make decision to notify the respective User.
-6. On **Notify** push notification will be sent using IBM's Push notification service with the proper guidelines.
-7. Tracer can also export the detailed information of the encountered user by clicking on the **Export Data** in top right corner of table. 
+3. On clicking Start Tracing, the web portal will fetch all the App Client IDs which have come in contact with the infected user within **14 days** and had atleast **5 minutes** of close encounter.
+4. The App Client IDs of close encounters with their respective encouter details will be displayed as shown in **Contact Tracing Screenshot**
+5. The tracer can make decision to notify the respective user(s) based on this information.
+6. On clicking **Notify**, a push notification will be sent using IBM's Push Notification Service with the proper guidelines.
+7. Tracer can also export the detailed information of these users by clicking on the **Export Data** button located in the top right corner of table. 
 
 
 ## How does PocketCare S Work?
