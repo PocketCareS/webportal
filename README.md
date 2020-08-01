@@ -44,8 +44,9 @@ Before you begin, make sure you satisfy the following requirements in order to r
 2. Open the project on Visual Studio Code
 3. Search for file constants.js
 4. Update the Server API URL from [here]() and paste inplace of "YOUR_HOSTED_SERVER_API_URL"
-   export const baseUrl =
-  "YOUR_HOSTED_SERVER_API_URL";
+   ```java
+   export const baseUrl = "YOUR_HOSTED_SERVER_API_URL";
+   ```
 5. Inside the project directory open the terminal and run the following commands in order:
      
      ```npm install```
