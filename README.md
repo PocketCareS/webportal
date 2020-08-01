@@ -1,4 +1,4 @@
-# PocketCare S - WebPortal (FrontEnd)
+# PocketCare S - Web Portal (Front End)
 
 <img src="https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/logo.png" width="300">
 
