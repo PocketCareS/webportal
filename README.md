@@ -70,7 +70,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
 ![Analytics DashBoard](assets/9.PNG)
 ![](assets/7.PNG)
 ![](assets/8.PNG)
-5. New York Analytics  ![New York Analytics](assets/10.png)
+5. New York Analytics  ![New York Analytics](assets/10.PNG)
 6. Contact Tracing  ![Contact Tracing](assets/1.png)
 
 
