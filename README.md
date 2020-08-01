@@ -45,6 +45,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
    export const baseUrl =
   "YOUR_HOSTED_SERVER_API_URL";
 5. Inside the project directory open the terminal and run the following commands in order:
+     
      ```npm install```
     
      ```npm start```
@@ -55,6 +56,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
 3. Copy the Login command as shown in the figure below ![](assets/2.png)
 4. Copy and paste the login command in terminal at the folder where the react application source code resides.
 5. Inside the terminal run the following commands in order:
+     
      ```npm install```
     
      ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
@@ -72,6 +74,15 @@ Before you begin, make sure you satisfy the following requirements in order to r
 ![](assets/8.PNG)
 5. New York Analytics  ![New York Analytics](assets/10.PNG)
 6. Contact Tracing  ![Contact Tracing](assets/1.png)
+
+#### Steps to perform Contact Tracing.
+1. Get the patient's App-Client ID following the steps as mentioned [here](https://github.com/PocketCareS/PocketCareS-Android#getting-app-client-id)
+2. Copy and paste the ID in the text box with the label "Enter COVID-19 infected patient's App-Client ID for tracing".
+3. On Start tracing the web portal will fetch all the APP-Client ID which have come in contact with the infected user within 14 days and had atleast 5 minutes of close encounter.
+4. The close encountered App-Client ID with their respective encouter details will be displayed as shown in **Contact Tracing Screenshot**
+5. The information displayed is the brief information based on which tracer can make decision to notify the respective User.
+6. On **Notify** push notification will be sent using IBM's Push notification service with the proper guidelines.
+7. Tracer can also export the detailed information of the encountered user by clicking on the **Export Data** in top right corner of table. 
 
 
 ## How does PocketCare S Work?
