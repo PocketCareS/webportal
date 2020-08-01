@@ -37,39 +37,41 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 1. NPM (node package manager) which can be installed from [here](https://nodejs.org/en/download/)
    
-### Steps for running on local system
+### Running the application on local system
 1. Clone the repository
-2. Open the project on Visual Studio Code.
-3. search for file constants.js
-4. Update the Server API URL ans save here
+2. Open the project on Visual Studio Code
+3. Search for file constants.js
+4. Update the Server API URL from [here]() and paste inplace of "YOUR_HOSTED_SERVER_API_URL"
    export const baseUrl =
-  "https://pocketcares-server-app-pocketcares.mycluster-dal10-b-746843-c6bcb6f7fc0a61609dee42a1778bf377-0000.us-south.containers.appdomain.cloud";
-5. On the terminal in the project directory run the commands as
-    1. ```npm install```
+  "YOUR_HOSTED_SERVER_API_URL";
+5. Inside the project directory open the terminal and run the following commands in order:
+     ```npm install```
     
-    2. ```npm start```
+     ```npm start```
 
-### Steps for installation on Openshift 
-1. Install the OC cli on your system using the following [link](https://mirror.openshift.com/pub/openshift-v4/clients/oc/)
-2. Once installed.
-3. Open the openshift console
-4. Get the login command
-5. ![](assets/2.png)
-6. Copy and paste the command in terminal at the folder where the react application source code resides.
-7. On the terminal in the project directory run the commands as
-    1. ```npm install```
+### Steps for Openshift Deployment
+1. Install the OC cli on your system using the following [link](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html)
+2. Once installed, open the Openshift console
+3. Copy the Login command as shown in the figure below ![](assets/2.png)
+4. Copy and paste the login command in terminal at the folder where the react application source code resides.
+5. Inside the terminal run the following commands in order:
+     ```npm install```
     
-    2. ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
-9. This will install the react application on the openshift and give the public url in the console.
+     ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
+6. This will install the react application on Openshift and public url will be provided in terminal logs.
 
-### Web Portals Screenshots
+### Web Portal - Screenshots
 
-1.Single Sign On ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
-2.University Selction ![University Selction](assets/3.png)
-3.User Login ![User Login](assets/4.png)
-4.Analytics DashBoard ![Analytics DashBoard](assets/7.PNG)![](assets/8.PNG)
-5.New York Analytics ![New York Analytics](assets/5.png)
-6.Contact Tracing ![Contact Tracing](assets/1.png)
+1. Single Sign On  ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
+
+2. University Selection  ![University Selction](assets/3.png)
+3. User Login  ![User Login](assets/4.png)
+4. Analytics DashBoard  
+![Analytics DashBoard](assets/9.PNG)
+![](assets/7.PNG)
+![](assets/8.PNG)
+5. New York Analytics  ![New York Analytics](assets/10.png)
+6. Contact Tracing  ![Contact Tracing](assets/1.png)
 
 
 ## How does PocketCare S Work?
@@ -85,37 +87,36 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
-### Technological Advances
-
-![Tech](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCare_S_Road_Map.png)
-
 ### Security and Privacy 
 
 ![Security](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS-Privacy.png)
 
-For a more detailed description, refer to [further reading](#further-readings) section. 
+
+**For a more detailed description, refer to the [additional information](#additional-information) section.**
 
 
 ## Built With 
 
-In this submission, we have used IBM’s Cloud **Red Hat OpenShift** to deploy our server (using **OpenJDK 8**), database (using **MongoDB**), the web portal (using **Node Js server**) and **IBM Push notification service** from **IBM Bluemix** in the android application of PocketCare S as a proof of concept. In the future, we will consider integrating other IBM services into the PocketCare S solution.
+In this submission, we have used IBM’s Cloud **Red Hat OpenShift** to deploy our server (using **OpenJDK 8**), database (using **MongoDB**), the web portal (using **Node JS Server**) and **IBM Push Notification Service** from **IBM Cloud** in the Android application of PocketCare S as a proof of concept. In the future, we will be integrating other IBM services into the PocketCare S solution.
 
-## Project RoadMap 
+## Project Road Map 
 
-## Further Readings
+![Road Map](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCare_S_Road_Map.png)
 
-You can find more information about PocketCare S here:
+## Additional Information 
 
-1. [Website](https://engineering.buffalo.edu/computer-science-engineering/pocketcares.html) 
-2. [White Paper](https://docs.google.com/document/d/e/2PACX-1vT6UqA3HByzG5Di576gmz-JWzgKOFx5KLYGgJMpxcmWkOXYJ_vUFz2h1w2LnDNWI4y-xnyKhPi_s70p/pub)
+You can read more about PocketCare S on our [website](https://engineering.buffalo.edu/computer-science-engineering/pocketcares.html). We also have a [White Paper](https://docs.google.com/document/d/e/2PACX-1vT6UqA3HByzG5Di576gmz-JWzgKOFx5KLYGgJMpxcmWkOXYJ_vUFz2h1w2LnDNWI4y-xnyKhPi_s70p/pub) which can be accessed here.  
+
+PocketCare S is also available on [Google Play](https://play.google.com/store/apps/details?id=com.ub.pocketcares) and to the University at Buffalo (UB) community using the [Apple Developer Enterprise Program](https://engineering.buffalo.edu/computer-science-engineering/pocketcares/pocketcares-ios.html).
 
 ## License 
 
-This project is licensed under the Apache 2 License - see the [LICENSE](https://github.com/PocketCareS/webportal/blob/master/LICENSE) file for details
+This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
+
 Special thanks to all who helped bring the project to fruition:
 
 Sourav Samanta, Rishabh Joshi, Jeetendra Gan, Shanelle Ileto, Aritra Paul, Dr. Peter Winkelstein, Dr. Matthew R. Bonner, Kevin Wang, Chen Yuan, Dheeraj Bhatia, Latheeshwarraj Mohanraj, Dr. Wen Dong, Dr. Tong Guan, Dr. Marina Blanton, Sasha Shapiro, Stephen Fung
 
-And our deepest gratitude for the support of University at Buffalo.
+And our deepest gratitude for the support of **University at Buffalo**.
