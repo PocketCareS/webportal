@@ -1,6 +1,8 @@
-# PocketCare S - WebPortal (FrontEnd)
+# PocketCare S - Web Portal (Front End)
 
+<p align="center">
 <img src="https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/logo.png" width="300">
+</p>
 
 **Call for code submission for COVID-19 track.**
 
@@ -22,7 +24,7 @@ PocketCare S is designed to report social distance information without collectin
 
 ## Demo Video 
 
-[![Demo](http://img.youtube.com/vi/JnOWwagUgxQ/0.jpg)](http://www.youtube.com/watch?v=JnOWwagUgxQ "PocketCare S Demo")
+[![Demo](https://github.com/PocketCareS/PocketCareS-iOS/blob/master/assets/Video%20Thumbnail.png)](https://youtu.be/JUTQIcdgXwc "PocketCare S Demo")
  
  
 ## The Architecture
@@ -45,6 +47,7 @@ Before you begin, make sure you satisfy the following requirements in order to r
    export const baseUrl =
   "YOUR_HOSTED_SERVER_API_URL";
 5. Inside the project directory open the terminal and run the following commands in order:
+     
      ```npm install```
     
      ```npm start```
@@ -55,49 +58,70 @@ Before you begin, make sure you satisfy the following requirements in order to r
 3. Copy the Login command as shown in the figure below ![](assets/2.png)
 4. Copy and paste the login command in terminal at the folder where the react application source code resides.
 5. Inside the terminal run the following commands in order:
+     
      ```npm install```
     
      ```npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --imageTag=10.x --build.env YARN\_ENABLED=true --expose```
 6. This will install the react application on Openshift and public url will be provided in terminal logs.
 
 ### Web Portal - Screenshots
+[Click here](https://github.com/PocketCareS/webportal/blob/master/WorkFlow.md#web-portal---screenshots) to view the screenshots.
 
-1. Single Sign On  ![Single Sign On](assets/6.png) Note: This step is removed for the current submission as University Single Sign On cannot be provided for verification.
-
-2. University Selection  ![University Selction](assets/3.png)
-3. User Login  ![User Login](assets/4.png)
-4. Analytics DashBoard  
-![Analytics DashBoard](assets/9.PNG)
-![](assets/7.PNG)
-![](assets/8.PNG)
-5. New York Analytics  ![New York Analytics](assets/10.png)
-6. Contact Tracing  ![Contact Tracing](assets/1.png)
+#### Steps to perform Contact Tracing.
+1. Get the patient's App-Client ID following the steps as mentioned [here](https://github.com/PocketCareS/PocketCareS-Android#getting-app-client-id)
+2. Copy and paste the ID in the text box with the label "Enter COVID-19 infected patient's App-Client ID for tracing".
+3. On Start tracing the web portal will fetch all the APP-Client ID which have come in contact with the infected user within 14 days and had atleast 5 minutes of close encounter.
+4. The close encountered App-Client ID with their respective encouter details will be displayed as shown in **Contact Tracing Screenshot**
+5. The information displayed is the brief information based on which tracer can make decision to notify the respective User.
+6. On **Notify** push notification will be sent using IBM's Push notification service with the proper guidelines.
+7. Tracer can also export the detailed information of the encountered user by clicking on the **Export Data** in top right corner of table. 
 
 
 ## How does PocketCare S Work?
 
 ### Key Highlights (Mobile Application)
 
-1. Close encounter data will be displayed in the mobile application after a close encounter session starts. A close encounter session starts when two people are within **2 meters** for at least **5 minutes**. 
-2. The **virtual bluetooth name** changes every hour to ensure **user privacy**. 
-3. Data upload to the server takes place every hour.
-4. Data is stored in user's phone for a maximum of 14 days. 
+1. PocketCare S uses **Bluetooth Low Energy (BLE)** to discover and compute the duration **close encounters**. 
+2. A **close encounter** session starts when two people are within **2 meters** for at least **5 minutes**. 
+3. **Close encounter** data will be displayed in the mobile application after a close encounter session starts. 
+4. Users are **notified immediately** if a close encounter session exceeds **10 minutes**.
+5. The **virtual bluetooth name** changes **every hour** to ensure **user privacy**. 
+6. Data stored in the mobile application is **anonymized** (contains no Personally Identifiable Information) and consists of **daily health report** and **close encounters** for a **maximum period of 14 days.**
+7. Data upload to the server takes place **every hour**.
 
 ### Detailed Architecture 
 
 ![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
+
 ### Security and Privacy 
 
-![Security](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS-Privacy.png)
+PocketCare S cares values the security and privacy of its users. The app does not collect any private information about an individual person.  All the data collected is anonymous and will not reveal any personally identifiable information. An Infographic with this information can be found [here](https://engineering.buffalo.edu/content/dam/engineering/computer-science-engineering/images/pocketcare/PocketCareS.pdf).
 
 
 **For a more detailed description, refer to the [additional information](#additional-information) section.**
 
 
-## Built With 
+## Built With
 
-In this submission, we have used IBM’s Cloud **Red Hat OpenShift** to deploy our server (using **OpenJDK 8**), database (using **MongoDB**), the web portal (using **Node JS Server**) and **IBM Push Notification Service** from **IBM Cloud** in the Android application of PocketCare S as a proof of concept. In the future, we will be integrating other IBM services into the PocketCare S solution.
+### iOS
+- [BeaconMonitor](https://github.com/sebk/BeaconMonitor) - Used for close contact detection
+- [Charts](https://github.com/danielgindi/Charts) - Used to visualize data
+- [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift) - Used for encryption
+
+### Android 
+- [Android Beacon Library](https://altbeacon.github.io/android-beacon-library/) - Used for close contact detection
+- [High Charts](https://www.highcharts.com/) - Used to visualize data
+- [IBM Push Notifications](https://www.ibm.com/cloud/push-notifications) - Push Notification for Exposure 
+
+### Server 
+- [Red Hat OpenShift on IBM Cloud](https://www.ibm.com/cloud/openshift)
+  - Server using [OpenJDK 8](https://www.ibm.com/cloud/support-for-runtimes)
+  - Database using [MongoDB](https://www.ibm.com/cloud/databases-for-mongodb)
+  - Web Portal hosted using [Node JS Server](https://developer.ibm.com/node/cloud/)
+- [React](https://reactjs.org/) - Used to build the web portal
+- [High Charts](https://www.highcharts.com/) - Used to visualize data
+- [Spring Boot](https://spring.io/projects/spring-boot) - Framework for the Server
 
 ## Project Road Map 
 
@@ -106,6 +130,8 @@ In this submission, we have used IBM’s Cloud **Red Hat OpenShift** to deploy o
 ## Additional Information 
 
 You can read more about PocketCare S on our [website](https://engineering.buffalo.edu/computer-science-engineering/pocketcares.html). We also have a [White Paper](https://docs.google.com/document/d/e/2PACX-1vT6UqA3HByzG5Di576gmz-JWzgKOFx5KLYGgJMpxcmWkOXYJ_vUFz2h1w2LnDNWI4y-xnyKhPi_s70p/pub) which can be accessed here.  
+
+An in-depth video of the PocketCare S Mobile Application can be found [here](https://youtu.be/qvDil5-OTio).
 
 PocketCare S is also available on [Google Play](https://play.google.com/store/apps/details?id=com.ub.pocketcares) and to the University at Buffalo (UB) community using the [Apple Developer Enterprise Program](https://engineering.buffalo.edu/computer-science-engineering/pocketcares/pocketcares-ios.html).
 
@@ -117,6 +143,6 @@ This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE)
 
 Special thanks to all who helped bring the project to fruition:
 
-Sourav Samanta, Rishabh Joshi, Jeetendra Gan, Shanelle Ileto, Aritra Paul, Dr. Peter Winkelstein, Dr. Matthew R. Bonner, Kevin Wang, Chen Yuan, Dheeraj Bhatia, Latheeshwarraj Mohanraj, Dr. Wen Dong, Dr. Tong Guan, Dr. Marina Blanton, Sasha Shapiro, Stephen Fung
+Sourav Samanta, Rishabh Joshi, Jeetendra Gan, Shanelle Ileto, Aritra Paul, Dr. Peter Winkelstein, Dr. Matthew R. Bonner, Kevin Wang, Chen Yuan, Dheeraj Bhatia, Latheeshwarraj Mohanraj, Dr. Wen Dong, Dr. Tong Guan, Dr. Marina Blanton, Sasha Shapiro, Stephen Fung, David G. Young
 
 And our deepest gratitude for the support of **University at Buffalo**.
