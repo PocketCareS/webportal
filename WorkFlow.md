@@ -8,7 +8,7 @@ Note: This step is removed for the current submission as University Single Sign 
 ![University Selction](assets/3.png)
 ## 3. User Login  
 ![User Login](assets/4.png)
-The credentials for this step can be obtained from the [here]()
+The credentials for this step can be obtained from the [here](https://github.com/PocketCareS/Server/blob/master/Installation.md#creating-the-credentials-for-webportal-login)
 
 ## 4. Analytics DashBoard  
 ![Analytics DashBoard](assets/9.PNG)
