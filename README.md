@@ -94,6 +94,9 @@ Before you begin, make sure you satisfy the following requirements in order to r
 
 ![Working](https://github.com/PocketCareS/PocketCareS-Android/blob/development/assets/PocketCareS_Design_Technical.png)
 
+### Technological Advances
+
+PocketCare S has made significant technological advances compared to other solutions. An Infographic with this information can be found [here](https://engineering.buffalo.edu/content/dam/engineering/computer-science-engineering/images/pocketcare/PocketCareS-TechAdvances.pdf).
 
 ### Security and Privacy 
 
